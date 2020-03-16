@@ -1,0 +1,57 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   specificator.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ljerk <ljerk@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/27 23:22:24 by ljerk             #+#    #+#             */
+/*   Updated: 2020/03/06 18:35:17 by ljerk            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/ft_printf.h"
+
+static int	def_types(t_spec *spec)
+{
+	if (spec->format[spec->i] == 's')
+		print_s(spec);
+	if (spec->format[spec->i] == 'c')
+		print_c(spec);
+	/* if (spec->format[spec->i] == 'S')
+		print_ls(spec); */
+	/* if (spec->format[spec->i] == 'p')
+		print_p(spec); */
+	/* if (spec->format[spec->i] == 'd' ||	spec->format[spec->i] == 'i')
+		print_d(spec);
+	if (spec->format[spec->i] == 'o' || spec->format[spec->i] == 'O')
+		print_o(spec);
+	if (spec->format[spec->i] == 'u')
+		print_u(spec);
+	if (spec->format[spec->i] == 'x')
+		print_x(spec); */
+	/* if (spec->format[spec->i] == 'X')
+		print_lx(spec); */
+	/* if (spec->format[spec->i] == 'C')
+		print_lc(spec); */
+	/* if (spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
+		print_f(spec); */
+	return (0);
+}
+
+int		print_spec(t_spec *spec)
+{
+	if (spec->format[spec->i] == 's' || spec->format[spec->i] == 'S' ||
+		spec->format[spec->i] == 'p' || spec->format[spec->i] == 'd' ||
+		spec->format[spec->i] == 'i' || spec->format[spec->i] == 'o' ||
+		spec->format[spec->i] == 'O' || spec->format[spec->i] == 'u' ||
+		spec->format[spec->i] == 'x' || spec->format[spec->i] == 'X' ||
+		spec->format[spec->i] == 'c' || spec->format[spec->i] == 'C' ||
+		spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
+	{
+		def_types(spec);
+		spec->i++;
+	}
+	return (0);
+}
+
