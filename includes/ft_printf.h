@@ -76,5 +76,6 @@ char		*ft_itoa_base(int value, int base, int size);
 int			ft_atoi(const char *str);
 void		ft_putstr(char const *s);
 void		parse_star(t_spec *spec, t_flag *flag);
+void		parse_number(t_spec *spec, t_flag *flag, int *res);
 
 #endif

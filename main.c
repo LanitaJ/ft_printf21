@@ -3,8 +3,13 @@
 int main(void)
 {
 	char c = 's';
-	ft_printf("%*.15s\n", 12);
 	
+	ft_printf("%1.25hs\n", 12);
+	ft_printf("%1.25hhs\n", 12);
+	ft_printf("%1.25ls\n", 12);
+	ft_printf("%1.25lls\n", 12);
+	ft_printf("%1.25Ls\n", 12);
+
 	//ft_printf("%10s is a string\n", "this");
 	//ft_printf("%10s is a string\n", "this");	
 	//printf("%d\n", ft_printf("%-31c", 'c'));

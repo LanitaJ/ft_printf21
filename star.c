@@ -25,7 +25,22 @@ void parse_star(t_spec *spec, t_flag *flag)
 			}
 		}
 		else
-			flag->flag_null = 1;
-            //у Леши
+			flag->flag_null = 1;//у Леши
 	}
+}
+
+void parse_number(t_spec *spec, t_flag *flag, int *res)
+{
+	if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' && 
+		(!*res || flag->star))
+	{
+		while (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
+		{
+			*res *= 10;
+			*res += spec->format[spec->i] - '0';
+			spec->i++;
+		}
+	}
+	
+	
 }

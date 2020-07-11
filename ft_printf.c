@@ -15,12 +15,12 @@
 void    flags(t_spec *spec, t_flag *flag)
 {
     first_flag(spec, flag);
-    second_flag(spec, flag);/* 
+    second_flag(spec, flag);
     third_flag(spec, flag);
-    fourth_flag(spec, flag); */
+    fourth_flag(spec, flag);
 
 	//print_spec(spec, flag);
-	printf("\n***************\n");
+	/* printf("\n***************\n");
 	printf("plus  %d\n", flag->plus);
 	printf("minus %d\n", flag->minus);
 	printf("hash  %d\n", flag->hash);
@@ -28,7 +28,7 @@ void    flags(t_spec *spec, t_flag *flag)
 	printf("zero  %d", flag->zero);
 	printf("\n---------------\n");
 	printf("width %d", flag->width);
-	printf("\n---------------\n");
+	printf("\n---------------\n"); */
 	printf("precision %d", flag->precision);
 	printf("\n---------------\n");
 	printf("h  %d\n", flag->h);
@@ -37,7 +37,7 @@ void    flags(t_spec *spec, t_flag *flag)
 	printf("ll %d\n", flag->ll);
 	printf("L  %d\n", flag->L);
 	printf("flag NULL %d\n", flag->flag_null);
-	printf("\n***************\n");
+	printf("\n***************\n"); 
     //free(flag);
 }
 

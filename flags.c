@@ -55,58 +55,47 @@ void    first_flag(t_spec *spec, t_flag *flag)
 void    second_flag(t_spec *spec, t_flag *flag)
 {
     parse_star(spec, flag);
-    //parse_number();
-    
-    /* if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
-    {
-        spec->flag->width = ft_atoi(&spec->format[spec->i]);
-		while (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' &&
-            spec->format[spec->i])
-        spec->i++;
-	}  */
+    parse_number(spec, flag, &flag->width);
 }
-/* 
-void    third_flag(t_spec *spec)
+
+void    third_flag(t_spec *spec, t_flag *flag)
 {
     if (spec->format[spec->i] == '.')
 	{
-		spec->flag->dot = 1;
+		flag->dot = 1;
 		spec->i++;
+        flag->precision = 0;
+        parse_star(spec, flag);
+        parse_number(spec, flag, &flag->precision);
 	}
-    if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
-	{
-		spec->flag->precision = ft_atoi(&spec->format[spec->i]);
-		while (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' &&
-				spec->format[spec->i])
-			spec->i++;
-	}
+    
 }
 
-void	fourth_flag(t_spec *spec)
+void	fourth_flag(t_spec *spec, t_flag *flag)
 {
 	if (spec->format[spec->i] == 'L')
 	{
-		spec->flag->L = 1;
+		flag->L = 1;
 		spec->i++;
 	}
 	else if (spec->format[spec->i] == 'h' && (spec->format[spec->i + 1] == 'h'))
 	{
-		spec->flag->hh = 1;
+		flag->hh = 1;
 		spec->i++;
 	}
 	else if (spec->format[spec->i] == 'h')
 	{
-		spec->flag->h = 1;
+		flag->h = 1;
 		spec->i++;
 	}
 	else if (spec->format[spec->i] == 'l' && (spec->format[spec->i + 1] == 'l'))
 	{
-		spec->flag->ll = 1;
+		flag->ll = 1;
 		spec->i++;
 	}
 	else if (spec->format[spec->i] == 'l')
 	{
-		spec->flag->l = 1;
+		flag->l = 1;
 		spec->i++;
 	}
-} */
+}
