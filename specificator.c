@@ -12,12 +12,14 @@
 
 #include "includes/ft_printf.h"
 
-static int	def_types(t_spec *spec)
+static int	def_types(t_spec *spec, t_flag *flag)
 {
+
 	if (spec->format[spec->i] == 's')
-		print_s(spec);
-	if (spec->format[spec->i] == 'c')
-		print_c(spec);
+		flag->flag_null = 2;
+		//print_s(spec, flag);
+	/* if (spec->format[spec->i] == 'c')
+		print_c(spec, flag); */
 	/* if (spec->format[spec->i] == 'S')
 		print_ls(spec); */
 	/* if (spec->format[spec->i] == 'p')
@@ -39,7 +41,7 @@ static int	def_types(t_spec *spec)
 	return (0);
 }
 
-int		print_spec(t_spec *spec)
+int		print_spec(t_spec *spec, t_flag *flag)
 {
 	if (spec->format[spec->i] == 's' || spec->format[spec->i] == 'S' ||
 		spec->format[spec->i] == 'p' || spec->format[spec->i] == 'd' ||
@@ -49,7 +51,7 @@ int		print_spec(t_spec *spec)
 		spec->format[spec->i] == 'c' || spec->format[spec->i] == 'C' ||
 		spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
 	{
-		def_types(spec);
+		def_types(spec, flag);
 		spec->i++;
 	}
 	return (0);

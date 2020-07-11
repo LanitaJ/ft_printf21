@@ -12,49 +12,51 @@
 
 #include "includes/ft_printf.h"
 
-void    flags(t_spec *spec)
+void    flags(t_spec *spec, t_flag *flag)
 {
-    first_flag(spec);
-    second_flag(spec);
-    third_flag(spec);
-    fourth_flag(spec);
-/* 
+    first_flag(spec, flag);
+    second_flag(spec, flag);/* 
+    third_flag(spec, flag);
+    fourth_flag(spec, flag); */
+
+	//print_spec(spec, flag);
+	printf("\n***************\n");
+	printf("plus  %d\n", flag->plus);
+	printf("minus %d\n", flag->minus);
+	printf("hash  %d\n", flag->hash);
+	printf("space %d\n", flag->space);
+	printf("zero  %d", flag->zero);
 	printf("\n---------------\n");
-	printf("plus  %d\n", spec->flag->plus);
-	printf("minus %d\n", spec->flag->minus);
-	printf("hash  %d\n", spec->flag->hash);
-	printf("space %d\n", spec->flag->space);
-	printf("zero  %d", spec->flag->zero);
+	printf("width %d", flag->width);
 	printf("\n---------------\n");
-	printf("width %d", spec->flag->width);
+	printf("precision %d", flag->precision);
 	printf("\n---------------\n");
-	printf("precision %d", spec->flag->precision);
-	printf("\n---------------\n");
-	printf("h  %d\n", spec->flag->h);
-	printf("hh %d\n", spec->flag->hh);
-	printf("l  %d\n", spec->flag->l);
-	printf("ll %d\n", spec->flag->ll);
-	printf("L  %d\n", spec->flag->L); */
-	print_spec(spec); 
-    free(spec->flag);
+	printf("h  %d\n", flag->h);
+	printf("hh %d\n", flag->hh);
+	printf("l  %d\n", flag->l);
+	printf("ll %d\n", flag->ll);
+	printf("L  %d\n", flag->L);
+	printf("flag NULL %d\n", flag->flag_null);
+	printf("\n***************\n");
+    //free(flag);
 }
 
-int		parse(t_spec *spec)
+int		parse(t_spec *spec, t_flag *flag)
 {
-    int len;
+    //int len;
 
-    len = (int)ft_strlen(spec->format);
     spec->i = 0;
     spec->bytes = 0;
-    while (spec->format[spec->i] != '\0' && spec->i < len)
+    while (spec->format[spec->i] != '\0')
     {
-        while (spec->format[spec->i] != '%' && spec->i < len)
+		if (spec->format[spec->i++] == '%')
+            flags(spec, flag);
+    	else
         {
             ft_putchar(spec->format[spec->i++]);
             spec->bytes++;
         } 
-        if (spec->format[spec->i++] == '%')
-            flags(spec);
+        
     }
     return (spec->bytes);
 }
@@ -62,14 +64,13 @@ int		parse(t_spec *spec)
 int		ft_printf(const char *format, ...)
 {
 	t_spec		spec;
-	va_list		ap;
+	t_flag		flag;
 
-	va_start(ap, format);
+	va_start(spec.ap, format);
 	spec.format = ft_strdup(format);
-    spec.ap = &ap;
-	if (!parse(&(spec)))
+	if (!parse(&spec, &flag))
 		return (-1);
-	va_end(ap);
+	va_end(spec.ap);
 	free(spec.format);
 	return (spec.bytes);
 }
@@ -78,13 +79,30 @@ int		ft_printf(const char *format, ...)
 
 /*
 	записываем в spec.format format
-	начинаем парсить строку
-	выбрать: записываем всё в буфер и потом выводить или выводить сразу
-	идем по строке
-	если встретили символ, выводим
-	если втретили \ обрабатываем
+
+	шаг 1:выводить сразу обычный текст 
 	если встретили % начинаем парсить флаг, длину, точность, размер типа и сам спецификатор типа
 		параллельно записываем в структуру все эти данные
 	после парсинга % есть структура заполненная 
 	отправляем её в функцию вывода
+	выводим спецификатор
+	возврат к шагу 1
+	
+
+	ТУДУ:
+	расписать для каждого типа флаги
+	рассмотреть совместимости флагов
+	узнать про цвета
+	fd
+	запись в файл
+	вывод двоичных чисел
+
+	Пояснения.
+	spec -	хранит:
+			поданую строку
+			аргументы для va_arg,
+			количество байтов на выход(то что возвращает принтф)
+			индекс текущего символа в поданой строке
+	flag - хранит:
+			все флаги
 */

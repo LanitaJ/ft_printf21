@@ -11,8 +11,8 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-
-static int				print_ls(/* spec */)
+/* 
+static int				print_ls()
 {
 	
 	return (0);
@@ -49,13 +49,13 @@ static int		print_flag_s(t_spec *spec, char *s, int len)
 	return (0);
 }
 
-int			print_s(t_spec *spec)
+int			print_s(t_spec *spec, t_flag *flag)
 {
 	char	*s;
 	size_t	len;
 	
 	if (spec->flag->l && !spec->flag->h)
-		print_ls(/* spec */);
+		print_ls();
 	else
 	{
 		s = va_arg(*(spec->ap), char *);
@@ -74,4 +74,4 @@ int			print_s(t_spec *spec)
 			}
 	}
 	return (0);
-}
+} */

@@ -13,6 +13,7 @@
 #ifndef PRINTF_H
 
 # define PRINTF_H
+# define FT_ABS(X) ((X) < 0 ? - (X) : (X))
 # define TYPE "cCdioOuUxXfFeEgGsS"
 #include <stdarg.h>
 #include <stdio.h>//убрать потом
@@ -27,6 +28,7 @@ typedef struct		s_flag
 	int		space;
 	int		zero;
 		
+	int		star;
 	int		width;
 	int		dot;
 	int		precision;
@@ -37,26 +39,27 @@ typedef struct		s_flag
 	int		h;
 	int		hh;
 	
+	int		flag_null;
+
 	char	type;	
 }					t_flag;
 
 typedef struct		s_spec
 {
-	t_flag	*flag;
 	int		i;
 	char	*format;
 	int		bytes;
-	va_list	*ap;
+	va_list	ap;
 }					t_spec;
 
 int			ft_printf(const char *format, ...);
-void    	first_flag(t_spec *spec);
-void    	second_flag(t_spec *spec);
-void    	third_flag(t_spec *spec);
-void    	fourth_flag(t_spec *spec);
-int			print_spec(t_spec *spec);
-int			print_c(t_spec *spec);
-int			print_s(t_spec *spec);
+void    	first_flag(t_spec *spec, t_flag *flag);
+void    	second_flag(t_spec *spec, t_flag *flag);
+void    	third_flag(t_spec *spec, t_flag *flag);
+void    	fourth_flag(t_spec *spec, t_flag *flag);
+int			print_spec(t_spec *spec, t_flag *flag);
+/* int			print_c(t_spec *spec); */
+int			print_s(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);
@@ -72,5 +75,6 @@ int			ft_putchar(int c);
 char		*ft_itoa_base(int value, int base, int size);
 int			ft_atoi(const char *str);
 void		ft_putstr(char const *s);
+void		parse_star(t_spec *spec, t_flag *flag);
 
 #endif

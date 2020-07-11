@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-
+/* 
 static int flags_c(t_spec *spec, char *c)
 {
 	if (spec->flag->minus)
@@ -40,20 +40,20 @@ static int flags_c(t_spec *spec, char *c)
 	return (0);
 }
 
-/* static int		print_lc(t_spec *spec)
+static int		print_lc(t_spec *spec)
 {
 	
 	return (1);
-} */
+}
 
 int		print_c(t_spec *spec)
 {
 	char	c;
 
-	/* if (spec->flag->l && !spec->flag->h)
+	if (spec->flag->l && !spec->flag->h)
 		print_lc(spec);
 	else
-	{ */
+	{ 
 		c = va_arg(*(spec->ap), int);
 		if (spec->flag->width)
 			flags_c(spec, &c);
@@ -67,4 +67,4 @@ int		print_c(t_spec *spec)
 		}
 	//}
 	return (0);
-}
+} */

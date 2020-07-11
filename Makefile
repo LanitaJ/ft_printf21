@@ -17,6 +17,7 @@ NAME = libftprintf.a
 SRC =	ft_printf.c specificator.c flags.c\
 		spec_c.c spec_s.c\
 		ft_atoi.c ft_itoa_base.c ft_putchar.c ft_strlen.c ft_strdup.c ft_putstr.c\
+		star.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -30,7 +31,7 @@ all: $(NAME)
 	@gcc -c $(FLAGS) $<
 
 $(NAME): $(OBJ)
-	@gcc $(FLAGS) $(OPTION) $(SRC) 
+	gcc $(FLAGS) $(OPTION) $(SRC) 
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 

@@ -6,63 +6,66 @@
 /*   By: ljerk <ljerk@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 19:08:28 by ljerk             #+#    #+#             */
-/*   Updated: 2020/03/06 21:15:41 by ljerk            ###   ########.fr       */
+/*   Updated: 2020/07/11 17:29:16 by ljerk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-void	init_flag(t_spec *spec)
+void	init_flag(t_flag *flag)
 {
-    spec->flag = malloc(sizeof(t_flag));
-    spec->flag->plus = 0;
-    spec->flag->minus = 0;
-    spec->flag->hash = 0;
-    spec->flag->space = 0;
-    spec->flag->zero = 0;
-    spec->flag->width = 0;
-	spec->flag->dot = 0;
-    spec->flag->precision = 0;
-    spec->flag->l = 0;
-    spec->flag->ll = 0;
-    spec->flag->h = 0;
-    spec->flag->hh = 0;
-    spec->flag->L = 0;
-    spec->flag->type = 0;
+    ///spec->flag = malloc(sizeof(t_flag));
+    flag->plus = 0;
+    flag->minus = 0;
+	flag->hash = 0;
+    flag->space = 0;
+    flag->zero = 0;
+    flag->width = 0;
+	flag->dot = 0;
+    flag->precision = 0;
+    flag->l = 0;
+    flag->ll = 0;
+    flag->h = 0;
+    flag->hh = 0;
+    flag->L = 0;
+    flag->type = 0;
 }
 
-void    first_flag(t_spec *spec)
+void    first_flag(t_spec *spec, t_flag *flag)
 {
-    init_flag(spec);
+    init_flag(flag);
     while (spec->format[spec->i] == '+' || spec->format[spec->i] == '-' ||
             spec->format[spec->i] == '#' ||spec->format[spec->i] == '0' ||
             spec->format[spec->i] == ' ')
     {
         if (spec->format[spec->i] == '+')
-            spec->flag->plus = 1;
+            flag->plus = 1;
         if (spec->format[spec->i] == '-')
-            spec->flag->minus = 1;
+            flag->minus = 1;
         if (spec->format[spec->i] == '#')
-            spec->flag->hash = 1;
+            flag->hash = 1;
         if (spec->format[spec->i] == ' ')
-            spec->flag->space = 1;
+            flag->space = 1;
         if (spec->format[spec->i] == '0')
-            spec->flag->zero = 1;
+            flag->zero = 1;
         spec->i++;
     }
 }
 
-void    second_flag(t_spec *spec)
+void    second_flag(t_spec *spec, t_flag *flag)
 {
-    if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
+    parse_star(spec, flag);
+    //parse_number();
+    
+    /* if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
     {
         spec->flag->width = ft_atoi(&spec->format[spec->i]);
 		while (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' &&
             spec->format[spec->i])
         spec->i++;
-	}
+	}  */
 }
-
+/* 
 void    third_flag(t_spec *spec)
 {
     if (spec->format[spec->i] == '.')
@@ -106,4 +109,4 @@ void	fourth_flag(t_spec *spec)
 		spec->flag->l = 1;
 		spec->i++;
 	}
-}
+} */
