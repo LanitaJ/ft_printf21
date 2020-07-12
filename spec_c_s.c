@@ -14,11 +14,40 @@
 
 static void print_width(t_spec *spec, t_flag *flag)
 {
-	spec->bytes += flag->width;
 	while (flag->width--)
 	{
-		ft_putchar(' ');
+		ft_putchar_bytes(' ', spec);
 	}
+}
+
+int			print_s(t_spec *spec, t_flag *flag)
+{
+	char	*str;
+	char	*out;
+	int		len;
+
+	if (!(str = (char *)va_arg(spec->ap, char*)))
+		out = ft_strdup("(null)");
+	else
+		out = ft_strdup(str);
+	len = ft_strlen(out);
+	if (len > flag->precision && flag->dot)
+	{
+		len = flag->precision;
+		out[flag->precision] = '\0';
+	}
+	if (flag->minus)
+		write(1, out, len);
+	if (flag->width > len)
+		flag->width -= len;
+	else
+		flag->width = 0;
+	spec->bytes += len;
+	print_width(spec, flag);
+	if (!flag->minus)
+		write(1, out, len);
+	free(out);
+	return(0);
 }
 
 static void	print_lc(char c)
@@ -39,11 +68,10 @@ int		print_c(t_spec *spec, t_flag *flag)
 		if (flag->l)
 			print_lc(c);
 		else
-			ft_putchar(c);	
+			ft_putchar_bytes(c, spec);	
 	}
 	print_width(spec, flag);
 	if (!flag->minus)
-		ft_putchar(c);
-	spec->bytes++;
+		ft_putchar_bytes(c, spec);
 	return (0);
 }

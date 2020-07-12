@@ -14,7 +14,6 @@
 
 void	init_flag(t_flag *flag)
 {
-    ///spec->flag = malloc(sizeof(t_flag));
     flag->plus = 0;
     flag->minus = 0;
 	flag->hash = 0;

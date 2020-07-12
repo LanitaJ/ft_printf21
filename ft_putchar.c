@@ -12,8 +12,9 @@
 
 #include "includes/ft_printf.h"
 
-int	ft_putchar(int c)
+int	ft_putchar_bytes(int c, t_spec *spec)
 {
 	write(1, &c, 1);
+	spec->bytes++;
 	return (0);
 }

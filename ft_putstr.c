@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void	ft_putstr(char const *s)
+void	ft_putstr_bytes(char const *s, t_spec *spec)
 {
 	if (!s)
 		return ;
@@ -20,5 +20,6 @@ void	ft_putstr(char const *s)
 	{
 		write(1, s, 1);
 		s++;
+		spec->bytes++;
 	}
 }

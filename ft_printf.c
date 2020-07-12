@@ -56,9 +56,8 @@ int		parse(t_spec *spec, t_flag *flag)
 		}
         else
         {
-            ft_putchar(spec->format[spec->i]);
+            ft_putchar_bytes(spec->format[spec->i], spec);
 			spec->i++;
-            spec->bytes++;
         }
     }
     return (spec->bytes);

@@ -59,7 +59,7 @@ void    	third_flag(t_spec *spec, t_flag *flag);
 void    	fourth_flag(t_spec *spec, t_flag *flag);
 int			print_spec(t_spec *spec, t_flag *flag);
 int			print_c(t_spec *spec, t_flag *flag);
-//int			print_s(t_spec *spec, t_flag *flag);
+int			print_s(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);
@@ -71,10 +71,10 @@ int			print_x(t_spec *spec);
 int			print_f(t_spec *spec); */
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *src);
-int			ft_putchar(int c);
+int			ft_putchar_bytes(int c, t_spec *spec);
 char		*ft_itoa_base(int value, int base, int size);
 int			ft_atoi(const char *str);
-void		ft_putstr(char const *s);
+void		ft_putstr_bytes(char const *s, t_spec *spec);
 void		parse_star(t_spec *spec, t_flag *flag);
 void		parse_number(t_spec *spec, t_flag *flag, int *res);
 
