@@ -19,7 +19,7 @@ void    flags(t_spec *spec, t_flag *flag)
     third_flag(spec, flag);
     fourth_flag(spec, flag);
 
-	//print_spec(spec, flag);
+	print_spec(spec, flag);
 	/* printf("\n***************\n");
 	printf("plus  %d\n", flag->plus);
 	printf("minus %d\n", flag->minus);
@@ -28,7 +28,7 @@ void    flags(t_spec *spec, t_flag *flag)
 	printf("zero  %d", flag->zero);
 	printf("\n---------------\n");
 	printf("width %d", flag->width);
-	printf("\n---------------\n"); */
+	printf("\n---------------\n");
 	printf("precision %d", flag->precision);
 	printf("\n---------------\n");
 	printf("h  %d\n", flag->h);
@@ -38,7 +38,7 @@ void    flags(t_spec *spec, t_flag *flag)
 	printf("L  %d\n", flag->L);
 	printf("flag NULL %d\n", flag->flag_null);
 	printf("\n***************\n"); 
-    //free(flag);
+	*/
 }
 
 int		parse(t_spec *spec, t_flag *flag)
@@ -49,14 +49,17 @@ int		parse(t_spec *spec, t_flag *flag)
     spec->bytes = 0;
     while (spec->format[spec->i] != '\0')
     {
-		if (spec->format[spec->i++] == '%')
-            flags(spec, flag);
-    	else
+		if (spec->format[spec->i] == '%')
+		{
+			spec->i++;
+			flags(spec, flag);
+		}
+        else
         {
-            ft_putchar(spec->format[spec->i++]);
+            ft_putchar(spec->format[spec->i]);
+			spec->i++;
             spec->bytes++;
-        } 
-        
+        }
     }
     return (spec->bytes);
 }
@@ -72,6 +75,7 @@ int		ft_printf(const char *format, ...)
 		return (-1);
 	va_end(spec.ap);
 	free(spec.format);
+	//printf("\nbytes: %d", spec.bytes);
 	return (spec.bytes);
 }
 

@@ -41,6 +41,4 @@ void parse_number(t_spec *spec, t_flag *flag, int *res)
 			spec->i++;
 		}
 	}
-	
-	
 }

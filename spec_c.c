@@ -11,60 +11,39 @@
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
-/* 
-static int flags_c(t_spec *spec, char *c)
+
+static void print_width(t_spec *spec, t_flag *flag)
 {
-	if (spec->flag->minus)
+	spec->bytes += flag->width;
+	while (flag->width--)
 	{
-		if (*c)
-		{
-			write(1, c, 1);
-			spec->bytes++;
-		}
-		spec->bytes += spec->flag->width - 1;
-		while (--spec->flag->width)
-			write(1, " ", 1);
+		ft_putchar(' ');
 	}
-	else
-	{
-		spec->bytes += spec->flag->width - 1;
-		while (--spec->flag->width)
-			write(1, " ", 1);
-		if (*c)
-		{
-			write(1, c, 1);
-			spec->bytes++;
-		}	
-	}
-	
-	return (0);
 }
 
-static int		print_lc(t_spec *spec)
+static void	print_lc(char c)
 {
-	
-	return (1);
+	c = (wchar_t)c;
+	write(1, &c, 1);
 }
 
-int		print_c(t_spec *spec)
+int		print_c(t_spec *spec, t_flag *flag)
 {
 	char	c;
 
-	if (spec->flag->l && !spec->flag->h)
-		print_lc(spec);
-	else
-	{ 
-		c = va_arg(*(spec->ap), int);
-		if (spec->flag->width)
-			flags_c(spec, &c);
+	c = (char)va_arg(spec->ap, char*);
+	if (flag->width)
+		flag->width--;
+	if (flag->minus)
+	{
+		if (flag->l)
+			print_lc(c);
 		else
-		{
-			if (c)
-			{
-				write(1, &c, 1);
-				spec->bytes++;
-			}	
-		}
-	//}
+			ft_putchar(c);	
+	}
+	print_width(spec, flag);
+	if (!flag->minus)
+		ft_putchar(c);
+	spec->bytes++;
 	return (0);
-} */
+}

@@ -58,8 +58,8 @@ void    	second_flag(t_spec *spec, t_flag *flag);
 void    	third_flag(t_spec *spec, t_flag *flag);
 void    	fourth_flag(t_spec *spec, t_flag *flag);
 int			print_spec(t_spec *spec, t_flag *flag);
-/* int			print_c(t_spec *spec); */
-int			print_s(t_spec *spec, t_flag *flag);
+int			print_c(t_spec *spec, t_flag *flag);
+//int			print_s(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);

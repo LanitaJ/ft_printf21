@@ -16,10 +16,9 @@ static int	def_types(t_spec *spec, t_flag *flag)
 {
 
 	if (spec->format[spec->i] == 's')
-		flag->flag_null = 2;
-		//print_s(spec, flag);
-	/* if (spec->format[spec->i] == 'c')
-		print_c(spec, flag); */
+		print_s(spec, flag);
+	if (spec->format[spec->i] == 'c')
+		print_c(spec, flag);
 	/* if (spec->format[spec->i] == 'S')
 		print_ls(spec); */
 	/* if (spec->format[spec->i] == 'p')
