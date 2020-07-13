@@ -29,6 +29,8 @@ void	init_flag(t_flag *flag)
     flag->L = 0;
     flag->type = 0;
     flag->star = 0;
+    flag->sign = 0;
+    flag->num = 0;
 }
 
 void    first_flag(t_spec *spec, t_flag *flag)
