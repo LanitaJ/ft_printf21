@@ -49,47 +49,48 @@ int main(void)
 
     
     */
-	printf("**********without equal*********\n");
-    printf("%10.12d.\n", 1234567);//pwl
-    printf("%5.12d.\n", 1234567);//plw
+	printf("\n**********without equal*********\n\n");
+    printf("pwl %10.12d.\n", 1234567);//pwl
+    printf("plw %5.12d.\n", 1234567);//plw
 
-    printf("%10.8d.\n", 1234567);//wpl
-    printf("%10.2d.\n", 1234567);//wlp
+    printf("wpl %10.8d.\n", 1234567);//wpl
+    printf("wlp %10.2d.\n", 1234567);//wlp
     
-    printf("%5.2d.\n", 1234567);//lwp
-    printf("%2.5d.\n", 1234567);//lpw
+    printf("lwp %5.2d.\n", 1234567);//lwp
+    printf("lpw %2.5d.\n", 1234567);//lpw
 
-    printf("**********without equal, with minus*********\n");
+    printf("\n**********without equal, with minus*********\n\n");
 
-    printf("%-10.12d.\n", 1234567);//pwl
-    printf("%-5.12d.\n", 1234567);//plw
+    printf("pwl %-10.12d.\n", 1234567);//pwl
+    printf("plw %-5.12d.\n", 1234567);//plw
 
-    printf("%-10.8d.\n", 1234567);//wpl
-    printf("%-10.2d.\n", 1234567);//wlp
+    printf("wpl %-10.8d.\n", 1234567);//wpl
+    printf("wlp %-10.2d.\n", 1234567);//wlp
     
-    printf("%-5.2d.\n", 1234567);//lwp
-    printf("%-2.5d.\n", 1234567);//lpw
+    printf("lwp %-5.2d.\n", 1234567);//lwp
+    printf("lpw %-2.5d.\n", 1234567);//lpw
 
-    printf("**********with equal************\n");
+    printf("\n**********with equal************\n\n");
 
-    printf("%8.8d.\n", 1234567);//w=p l 
-    printf("%7.2d.\n", 1234567);//w=l p
-    printf("%7.7d.\n", 1234567);//w=p=l
-    printf("%8.7d.\n", 1234567);//w p=l
-    printf("%2.7d.\n", 1234567);//p=l w
-    printf("%7.8d.\n", 1234567);//p w=l
-    printf("%6.6d.\n", 1234567);//l w=p
+    printf("w=p l %8.8d.\n", 1234567);//w=p l 
+    printf("w=l p %7.2d.\n", 1234567);//w=l p
+    printf("w=p=l %7.7d.\n", 1234567);//w=p=l
+    printf("w p=l %8.7d.\n", 1234567);//w p=l
+    printf("p=l w %2.7d.\n", 1234567);//p=l w
+    printf("p w=l %7.8d.\n", 1234567);//p w=l
+    printf("l w=p %6.6d.\n", 1234567);//l w=p
 
-	printf("**********with equal, with minus************\n");
+	printf("\n**********with equal, with minus************\n\n");
     
-	printf("%8.8d.\n", 1234567);//w=p l 
-    printf("%7.2d.\n", 1234567);//w=l p
-    printf("%7.7d.\n", 1234567);//w=p=l
-    printf("%8.7d.\n", 1234567);//w p=l
-    printf("%2.7d.\n", 1234567);//p=l w
-    printf("%7.8d.\n", 1234567);//p w=l
-    printf("%6.6d.\n", 1234567);//l w=p
+	printf("w=p l %-8.8d.\n", 1234567);//w=p l 
+    printf("w=l p %-7.2d.\n", 1234567);//w=l p
+    printf("w=p=l %-7.7d.\n", 1234567);//w=p=l
+    printf("w p=l %-8.7d.\n", 1234567);//w p=l
+    printf("p=l w %-2.7d.\n", 1234567);//p=l w
+    printf("p w=l %-7.8d.\n", 1234567);//p w=l
+    printf("l w=p %-6.6d.\n", 1234567);//l w=p
 
+    
 	/* TEST!!!!!!!!!!!!
 
 ft_printf("**********without equal*********\n");
