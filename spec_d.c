@@ -28,15 +28,10 @@ void make_4thflag(t_spec *spec, t_flag *flag)
 	else
 		num = (int)va_arg(spec->ap, int);
 	if (num < 0 && ++flag->sign)
-		flag->num = (unsigned int)num * -1;
+		flag->num = (unsigned long)num * -1;
 	else
-		flag->num = (unsigned int)num;
+		flag->num = (unsigned long)num;
 	flag->len = ft_len_number(flag->num);
-	if (flag->num == 0 && flag->dot)
-	{
-		flag->precision++;
-		flag->width++;
-	}
 }	
 
 int	ft_len_number(unsigned long num)
@@ -96,6 +91,7 @@ int pd(t_spec *spec, t_flag *flag)//done
 
 int wpd_and_pdw(t_spec *spec, t_flag *flag)//done
 {
+
 	if (flag->width > flag->precision && flag->precision > flag->len) 
 	{
 		flag->width -= flag->precision;
@@ -136,8 +132,7 @@ int wd_and_dw(t_spec *spec, t_flag *flag)//done
 			print_width(spec, flag);
 		if (!flag->zero)
 			print_sign(spec, flag);
-		if (flag->num)
-			ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num);
 		if (flag->minus)//dw
 			print_width(spec, flag);
 		return (1);
@@ -159,8 +154,7 @@ int d(t_spec *spec, t_flag *flag)//done
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
 		print_sign(spec, flag);
-		if (flag->num)
-			ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num);
 		return (1);
 	}
 	return (0);

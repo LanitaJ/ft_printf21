@@ -40,7 +40,7 @@ typedef struct		s_flag
 	int		hh;
 	
 	int		sign;
-	int		num;
+	unsigned long		num;
 	int		len;
 	char	type;
 }					t_flag;

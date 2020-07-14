@@ -83,7 +83,7 @@ void	fourth_flag(t_spec *spec, t_flag *flag)
 	else if (spec->format[spec->i] == 'h' && (spec->format[spec->i + 1] == 'h'))
 	{
 		flag->hh = 1;
-		spec->i++;
+		spec->i += 2;
 	}
 	else if (spec->format[spec->i] == 'h')
 	{
@@ -93,7 +93,7 @@ void	fourth_flag(t_spec *spec, t_flag *flag)
 	else if (spec->format[spec->i] == 'l' && (spec->format[spec->i + 1] == 'l'))
 	{
 		flag->ll = 1;
-		spec->i++;
+		spec->i += 2;
 	}
 	else if (spec->format[spec->i] == 'l')
 	{

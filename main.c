@@ -93,10 +93,13 @@ int main(void)
 
 
 
-    //printf("@moulitest: %.d %.0d.\n", 0, 0);
-    //ft_printf("@moulitest: %.d %.0d.", 0, 0);
-    ft_printf("%2.3d.\n", 0);
-    printf("%2.3d.", 0);
+    /* printf("@moulitest:%.d.%.0d.\n", 0, 0);
+    ft_printf("@moulitest:%.d.%.0d.\n", 0, 0); 
+    printf("@moulitest:%5.d.%5.0d.\n", 0, 0);
+    ft_printf("@moulitest:%5.d.%5.0d.", 0, 0);*/
+
+    ft_printf("%lld", -9223372036854775808);
+
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
 	printf("pwl .%-10.15d.\n", 1234567); */
 
