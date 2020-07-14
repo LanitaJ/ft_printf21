@@ -25,7 +25,7 @@ void parse_star(t_spec *spec, t_flag *flag)
 			}
 		}
 		else
-			flag->flag_null = 1;//у Леши
+			flag->zero = 1;//у Леши
 	}
 }
 

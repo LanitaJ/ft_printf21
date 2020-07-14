@@ -41,6 +41,7 @@ typedef struct		s_flag
 	
 	int		sign;
 	int		num;
+	int		len;
 	char	type;
 }					t_flag;
 
@@ -79,5 +80,11 @@ int			ft_atoi(const char *str);
 void		ft_putstr_bytes(char const *s, t_spec *spec);
 void		parse_star(t_spec *spec, t_flag *flag);
 void		parse_number(t_spec *spec, t_flag *flag, int *res);
+/**************************/
+void make_4thflag(t_spec *spec, t_flag *flag);
+int	ft_len_number(unsigned long num);
+void		ft_figure_put(t_spec *spec, unsigned long n);
+int pd(t_spec *spec, t_flag *flag);
+int wpd(t_spec *spec, t_flag *flag);
 
 #endif

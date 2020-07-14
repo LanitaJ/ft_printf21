@@ -49,7 +49,7 @@ int main(void)
 
     
     */
-	printf("\n**********without equal*********\n\n");
+	/* printf("\n**********without equal*********\n\n");
     printf("pwl %10.12d.\n", 1234567);//pwl
     printf("plw %5.12d.\n", 1234567);//plw
 
@@ -88,12 +88,64 @@ int main(void)
     printf("w p=l %-8.7d.\n", 1234567);//w p=l
     printf("p=l w %-2.7d.\n", 1234567);//p=l w
     printf("p w=l %-7.8d.\n", 1234567);//p w=l
-    printf("l w=p %-6.6d.\n", 1234567);//l w=p
+    printf("l w=p %-6.6d.\n", 1234567);//l w=p */
 
+
+
+
+
+
+
+
+
+    /* printf("\n**********without equal, with space*********\n\n");
+    printf("pwl .% 10.12d.\n", 1234567);//pwl
+    printf("plw .% 5.12d.\n", 1234567);//plw
+
+    printf("wpl .% 10.8d.\n", 1234567);//wpl
+    printf("wlp .% 10.2d.\n", 1234567);//wlp
     
-	/* TEST!!!!!!!!!!!!
+    printf("lwp .% 5.2d.\n", 1234567);//lwp
+    printf("lpw .% 2.5d.\n", 1234567);//lpw
 
-ft_printf("**********without equal*********\n");
+    printf("\n**********without equal, with minus, with space*********\n\n");
+
+    printf("pwl .% -10.12d.\n", 1234567);//pwl
+    printf("plw .% -5.12d.\n", 1234567);//plw
+
+    printf("wpl .% -10.8d.\n", 1234567);//wpl
+    printf("wlp .% -10.2d.\n", 1234567);//wlp
+    
+    printf("lwp .% -5.2d.\n", 1234567);//lwp
+    printf("lpw .% -2.5d.\n", 1234567);//lpw
+    
+    printf("\n**********with equal, without minus, with space************\n\n");
+
+    printf("w=p l .% 8.8d.\n", 1234567);//w=p l 
+    printf("w=l p .% 7.2d.\n", 1234567);//w=l p
+    printf("w=p=l .% 7.7d.\n", 1234567);//w=p=l
+    printf("w p=l .% 8.7d.\n", 1234567);//w p=l
+    printf("p=l w .% 2.7d.\n", 1234567);//p=l w
+    printf("p w=l .% 7.8d.\n", 1234567);//p w=l
+    printf("l w=p .% 6.6d.\n\n", 1234567);//l w=p
+
+    printf("\n**********with equal, with minus, with space************\n\n");
+    
+    printf("w=p l .%- 8.8d.\n", 1234567);//w=p l 
+    printf("w=l p .%- 7.2d.\n", 1234567);//w=l p
+    printf("w=p=l .%- 7.7d.\n", 1234567);//w=p=l
+    printf("w p=l .%- 8.7d.\n", 1234567);//w p=l
+    printf("p=l w .%- 2.7d.\n", 1234567);//p=l w
+    printf("p w=l .%- 7.8d.\n", 1234567);//p w=l
+    printf("l w=p .%- 6.6d.\n", 1234567);//l w=p */
+    
+    
+    
+    ft_printf("wpl .%10.8d.\n", 1234567);//
+    printf("wpl .%10.8d.\n", 1234567);//
+	/* TEST MY FT_PRINTF!!!!!!!!!!!!
+
+    ft_printf("**********without equal*********\n");
     ft_printf("%10.12d.\n", 1234567);//pwl
     ft_printf("%5.12d.\n", 1234567);//plw
 
@@ -126,14 +178,20 @@ ft_printf("**********without equal*********\n");
 
 	printf("**********with equal, with minus************\n");
     
-	ft_printf("%8.8d.\n", 1234567);//w=p l 
-    ft_printf("%7.2d.\n", 1234567);//w=l p
-    ft_printf("%7.7d.\n", 1234567);//w=p=l
-    ft_printf("%8.7d.\n", 1234567);//w p=l
-    ft_printf("%2.7d.\n", 1234567);//p=l w
-    ft_printf("%7.8d.\n", 1234567);//p w=l
-    ft_printf("%6.6d.\n", 1234567);//l w=p
+	ft_printf("%-8.8d.\n", 1234567);//w=p l 
+    ft_printf("%-7.2d.\n", 1234567);//w=l p
+    ft_printf("%-7.7d.\n", 1234567);//w=p=l
+    ft_printf("%-8.7d.\n", 1234567);//w p=l
+    ft_printf("%-2.7d.\n", 1234567);//p=l w
+    ft_printf("%-7.8d.\n", 1234567);//p w=l
+    ft_printf("%-6.6d.\n", 1234567);//l w=p
 	 */
+    
+    
+
+
+
+
 
 
 	/*****************Строки****************/
