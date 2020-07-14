@@ -63,6 +63,7 @@ int			print_c(t_spec *spec, t_flag *flag);
 int			print_s(t_spec *spec, t_flag *flag);
 int			print_q(t_spec *spec, t_flag *flag);
 int			print_d(t_spec *spec, t_flag *flag);
+int			print_u(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);

@@ -98,7 +98,8 @@ int main(void)
     printf("@moulitest:%5.d.%5.0d.\n", 0, 0);
     ft_printf("@moulitest:%5.d.%5.0d.", 0, 0);*/
 
-    ft_printf("%lld", -9223372036854775808);
+    //ft_printf("%lld", -9223372036854775808);
+    ft_printf("%u", 124536);
 
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
 	printf("pwl .%-10.15d.\n", 1234567); */
