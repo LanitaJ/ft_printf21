@@ -93,8 +93,12 @@ int main(void)
 
 
 
-
-
+    //printf("@moulitest: %.d %.0d.\n", 0, 0);
+    //ft_printf("@moulitest: %.d %.0d.", 0, 0);
+    ft_printf("%2.3d.\n", 0);
+    printf("%2.3d.", 0);
+    /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
+	printf("pwl .%-10.15d.\n", 1234567); */
 
 
 
@@ -141,9 +145,11 @@ int main(void)
     
     
     
-    ft_printf("wpl .%10.8d.\n", 1234567);//
+    /* ft_printf("wpl .%10.8d.\n", 1234567);//
     printf("wpl .%10.8d.\n", 1234567);//
-	/* TEST MY FT_PRINTF!!!!!!!!!!!!
+     */
+    
+    /* TEST MY FT_PRINTF!!!!!!!!!!!!
 
     ft_printf("**********without equal*********\n");
     ft_printf("%10.12d.\n", 1234567);//pwl

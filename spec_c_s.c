@@ -12,11 +12,14 @@
 
 #include "includes/ft_printf.h"
 
-static void print_width(t_spec *spec, t_flag *flag)
+void print_width(t_spec *spec, t_flag *flag)
 {
 	while (flag->width--)
 	{
-		ft_putchar_bytes(' ', spec);
+		if (flag->zero && !flag->minus)
+			ft_putchar_bytes('0', spec);
+		else
+			ft_putchar_bytes(' ', spec);
 	}
 }
 

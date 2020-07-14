@@ -31,7 +31,7 @@ all: $(NAME)
 	@gcc -c $(FLAGS) $<
 
 $(NAME): $(OBJ)
-	gcc $(FLAGS) $(OPTION) $(SRC) 
+	@gcc $(FLAGS) $(OPTION) $(SRC) 
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 

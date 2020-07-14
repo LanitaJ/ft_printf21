@@ -83,7 +83,8 @@ void		parse_number(t_spec *spec, t_flag *flag, int *res);
 /**************************/
 void make_4thflag(t_spec *spec, t_flag *flag);
 int	ft_len_number(unsigned long num);
-void		ft_figure_put(t_spec *spec, unsigned long n);
+void		ft_print_num(t_spec *spec, unsigned long n);
+void		print_width(t_spec *spec, t_flag *flag);
 int pd(t_spec *spec, t_flag *flag);
 int wpd(t_spec *spec, t_flag *flag);
 
