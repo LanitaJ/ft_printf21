@@ -59,11 +59,13 @@ void    	second_flag(t_spec *spec, t_flag *flag);
 void    	third_flag(t_spec *spec, t_flag *flag);
 void    	fourth_flag(t_spec *spec, t_flag *flag);
 int			print_spec(t_spec *spec, t_flag *flag);
+
 int			print_c(t_spec *spec, t_flag *flag);
 int			print_s(t_spec *spec, t_flag *flag);
 int			print_q(t_spec *spec, t_flag *flag);
 int			print_d(t_spec *spec, t_flag *flag);
 int			print_u(t_spec *spec, t_flag *flag);
+int			print_o(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);
@@ -84,13 +86,11 @@ void		parse_number(t_spec *spec, t_flag *flag, int *res);
 /**************************/
 void make_4thflag(t_spec *spec, t_flag *flag);
 int	ft_len_number(unsigned long num);
-void		ft_print_num(t_spec *spec, unsigned long n);
+void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c);
 void		print_width(t_spec *spec, t_flag *flag);
 int pd(t_spec *spec, t_flag *flag);
 int wpd(t_spec *spec, t_flag *flag);
 
 void umake_4thflag(t_spec *spec, t_flag *flag);
-int upd(t_spec *spec, t_flag *flag);
-int uwpd(t_spec *spec, t_flag *flag);
-
+void omake_4thflag(t_spec *spec, t_flag *flag);
 #endif

@@ -18,7 +18,6 @@ void    flags(t_spec *spec, t_flag *flag)
     second_flag(spec, flag);
     third_flag(spec, flag);
     fourth_flag(spec, flag);
-
 	print_spec(spec, flag);
 	/* printf("\n***************\n");
 	printf("plus  %d\n", flag->plus);
@@ -43,8 +42,6 @@ void    flags(t_spec *spec, t_flag *flag)
 
 int		parse(t_spec *spec, t_flag *flag)
 {
-    //int len;
-
     spec->i = 0;
     spec->bytes = 0;
     while (spec->format[spec->i] != '\0')

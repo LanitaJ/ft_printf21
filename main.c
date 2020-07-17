@@ -101,7 +101,8 @@ int main(void)
     //ft_printf("%lld", -9223372036854775808);
     //ft_printf("%lu\n", -42);
     //ft_printf("{%*3d}\n", 5, 0);
-    ft_printf("{%*3d}", 5, 0);
+    //ft_printf("%o\n", -5);
+    ft_printf("%o", 41);
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
 	printf("pwl .%-10.15d.\n", 1234567); */
 

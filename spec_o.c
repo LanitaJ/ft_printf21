@@ -1,4 +1,18 @@
 /* ************************************************************************** */
+    /*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   spec_s.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ljerk <ljerk@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/03 18:23:11 by ljerk             #+#    #+#             */
+/*   Updated: 2020/03/03 18:23:12 by ljerk            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "includes/ft_printf.h"
+
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   spec_u.c                                           :+:      :+:    :+:   */
@@ -12,7 +26,7 @@
 
 #include "includes/ft_printf.h"
 
-void umake_4thflag(t_spec *spec, t_flag *flag)
+void omake_4thflag(t_spec *spec, t_flag *flag)
 {
 	long long int num;
 
@@ -32,9 +46,11 @@ void umake_4thflag(t_spec *spec, t_flag *flag)
 	else
 		flag->num = (unsigned long)num;
 	flag->len = ft_len_number(flag->num);
+    if (flag->hash && flag->precision < 1)
+        flag->width--; 
 }
 
-int upd(t_spec *spec, t_flag *flag)//done
+int opd(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -49,14 +65,16 @@ int upd(t_spec *spec, t_flag *flag)//done
 		p -= l;
 		while (p--)
 			ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 10, 97);
+        if (flag->hash && flag->precision < 1)
+            ft_putchar_bytes('0', spec);
+		ft_print_num(spec, flag->num, 8, 97);
 		return (1);
 	}
 	return (0);
 }
 
 
-int uwpd_and_pdw(t_spec *spec, t_flag *flag)//done
+int owpd_and_pdw(t_spec *spec, t_flag *flag)//done
 {
 
 	if (flag->width > flag->precision && flag->precision > flag->len) 
@@ -67,7 +85,9 @@ int uwpd_and_pdw(t_spec *spec, t_flag *flag)//done
 			print_width(spec, flag);
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 10, 97);
+        if (flag->hash && flag->precision < 1)
+            ft_putchar_bytes('0', spec);
+		ft_print_num(spec, flag->num, 8, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -76,7 +96,7 @@ int uwpd_and_pdw(t_spec *spec, t_flag *flag)//done
 }
  
 
-int uwd_and_dw(t_spec *spec, t_flag *flag)//done
+int owd_and_dw(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -91,7 +111,9 @@ int uwd_and_dw(t_spec *spec, t_flag *flag)//done
 		flag->width -= l;
 		if (!flag->minus)//wd
 			print_width(spec, flag);
-		ft_print_num(spec, flag->num, 10, 97);
+        if (flag->hash)
+            ft_putchar_bytes('0', spec);
+		ft_print_num(spec, flag->num, 8, 97);
 		if (flag->minus)//dw
 			print_width(spec, flag);
 		return (1);
@@ -99,7 +121,7 @@ int uwd_and_dw(t_spec *spec, t_flag *flag)//done
 	return (0);
 }
 
-int ud(t_spec *spec, t_flag *flag)//done
+int od(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -112,28 +134,31 @@ int ud(t_spec *spec, t_flag *flag)//done
 	if ((l > w && w > p) || (l > p && p > w) || (w == l && l > p) || \
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
-		ft_print_num(spec, flag->num, 10, 97);
+        if (flag->hash)
+            ft_putchar_bytes('0', spec);
+		ft_print_num(spec, flag->num, 8, 97);
 		return (1);
 	}
 	return (0);
 }
 
 
-int			print_u(t_spec *spec, t_flag *flag)
+int			print_o(t_spec *spec, t_flag *flag)
 {
-	umake_4thflag(spec, flag);
+	omake_4thflag(spec, flag);
 	if (flag->minus)
 		flag->zero = 0;
 	if (flag->precision > 0)
 		flag->zero = 0;
-
-	if (upd(spec, flag))
+    if (flag->num == 0 && !flag->dot)
+        flag->hash = 0;
+	if (opd(spec, flag))
 		return (1);
-	else if (ud(spec, flag))
+	else if (od(spec, flag))
 		return (1);
-	else if (uwd_and_dw(spec, flag))
+	else if (owd_and_dw(spec, flag))
 		return (1);
-	else if (uwpd_and_pdw(spec, flag))
+	else if (owpd_and_pdw(spec, flag))
 		return (1);
 	return (0);
 }

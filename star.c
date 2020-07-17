@@ -11,7 +11,7 @@ void parse_star(t_spec *spec, t_flag *flag)
 		{
 			if (val < 0 && flag->dot)
 				flag->dot = 0;
-			else if (val < 0 && flag->dot != 0)
+			else if (val < 0 && flag->dot == 0)
 			{
 				flag->minus = 1;
 				flag->width = FT_ABS(val);

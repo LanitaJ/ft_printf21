@@ -47,12 +47,12 @@ int	ft_len_number(unsigned long num)
 	return (res);
 }
 
-void		ft_print_num(t_spec *spec, unsigned long n)
+void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c)
 {
-	if (n >= 10)
-		ft_print_num(spec, n / 10);
-	n = n % 10;
-	n += n < 10 ? '0' : 97 - 10;
+	if (n >= rang)
+		ft_print_num(spec, n / rang, rang, c);
+	n = n % rang;
+	n += n < 10 ? '0' : c - 10;
 	ft_putchar_bytes((char)n, spec);
 }
 
@@ -82,7 +82,7 @@ int pd(t_spec *spec, t_flag *flag)//done
 		print_sign(spec, flag);
 		while (p--)
 			ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num, 10, 97);
 		return (1);
 	}
 	return (0);
@@ -104,7 +104,7 @@ int wpd_and_pdw(t_spec *spec, t_flag *flag)//done
 			print_sign(spec, flag);
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num, 10, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -132,7 +132,7 @@ int wd_and_dw(t_spec *spec, t_flag *flag)//done
 			print_width(spec, flag);
 		if (!flag->zero)
 			print_sign(spec, flag);
-		ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num, 10, 97);
 		if (flag->minus)//dw
 			print_width(spec, flag);
 		return (1);
@@ -154,7 +154,7 @@ int d(t_spec *spec, t_flag *flag)//done
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
 		print_sign(spec, flag);
-		ft_print_num(spec, flag->num);
+		ft_print_num(spec, flag->num, 10, 97);
 		return (1);
 	}
 	return (0);

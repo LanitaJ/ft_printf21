@@ -15,7 +15,7 @@ NAME = libftprintf.a
 .PHONY: all clean fclean re
 
 SRC =	ft_printf.c specificator.c flags.c\
-		spec_c_s.c spec_q.c spec_d.c spec_u.c\
+		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c\
 		ft_atoi.c ft_itoa_base.c ft_putchar.c ft_strlen.c ft_strdup.c ft_putstr.c\
 		star.c
 
