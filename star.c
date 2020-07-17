@@ -4,7 +4,7 @@ void parse_star(t_spec *spec, t_flag *flag)
 {	
 	int val;
 
-	if (spec->format[spec->i] == '*' && spec->i + 1)
+	if (spec->format[spec->i] == '*' && spec->i++)
 	{
 		flag->star = 1;
 		if ((val = (int)va_arg(spec->ap, int)))
@@ -34,6 +34,7 @@ void parse_number(t_spec *spec, t_flag *flag, int *res)
 	if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' && 
 		(!*res || flag->star))
 	{
+		*res = 0;
 		while (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0')
 		{
 			*res *= 10;
