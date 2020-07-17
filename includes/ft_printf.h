@@ -89,4 +89,8 @@ void		print_width(t_spec *spec, t_flag *flag);
 int pd(t_spec *spec, t_flag *flag);
 int wpd(t_spec *spec, t_flag *flag);
 
+void umake_4thflag(t_spec *spec, t_flag *flag);
+int upd(t_spec *spec, t_flag *flag);
+int uwpd(t_spec *spec, t_flag *flag);
+
 #endif

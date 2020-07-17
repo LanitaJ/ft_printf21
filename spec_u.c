@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void make_4thflag(t_spec *spec, t_flag *flag)
+void umake_4thflag(t_spec *spec, t_flag *flag)
 {
 	long long int num;
 
@@ -32,41 +32,9 @@ void make_4thflag(t_spec *spec, t_flag *flag)
 	else
 		flag->num = (unsigned long)num;
 	flag->len = ft_len_number(flag->num);
-}	
-
-/* int	ft_len_number(unsigned long num)
-{
-	int	res;
-
-	res = 1;
-	while (num >= 10)
-	{
-		num /= 10;
-		res++;
-	}
-	return (res);
 }
 
-void		ft_print_num(t_spec *spec, unsigned long n)
-{
-	if (n >= 10)
-		ft_print_num(spec, n / 10);
-	n = n % 10;
-	n += n < 10 ? '0' : 97 - 10;
-	ft_putchar_bytes((char)n, spec);
-}
-
-void				print_sign(t_spec *spec, t_flag *flag)
-{
-	if (flag->plus && !flag->sign)
-		ft_putchar_bytes('+', spec );
-	if (flag->sign)
-		ft_putchar_bytes('-', spec);
-	else if (flag->space && !flag->plus)
-		ft_putchar_bytes(' ', spec);
-}
-
-int pd(t_spec *spec, t_flag *flag)//done
+int upd(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -79,7 +47,6 @@ int pd(t_spec *spec, t_flag *flag)//done
 		|| (p > w && w == l))
 	{
 		p -= l;
-		print_sign(spec, flag);
 		while (p--)
 			ft_putchar_bytes('0', spec);
 		ft_print_num(spec, flag->num);
@@ -89,19 +56,15 @@ int pd(t_spec *spec, t_flag *flag)//done
 }
 
 
-int wpd_and_pdw(t_spec *spec, t_flag *flag)//done
+int uwpd_and_pdw(t_spec *spec, t_flag *flag)//done
 {
 
 	if (flag->width > flag->precision && flag->precision > flag->len) 
 	{
 		flag->width -= flag->precision;
 		flag->precision -= flag->len;
-		if (flag->zero)
-			print_sign(spec, flag);
 		if (!flag->minus)
 			print_width(spec, flag);
-		if (!flag->zero)
-			print_sign(spec, flag);
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
 		ft_print_num(spec, flag->num);
@@ -113,7 +76,7 @@ int wpd_and_pdw(t_spec *spec, t_flag *flag)//done
 }
  
 
-int wd_and_dw(t_spec *spec, t_flag *flag)//done
+int uwd_and_dw(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -126,12 +89,8 @@ int wd_and_dw(t_spec *spec, t_flag *flag)//done
 	if (((w > l && l > p) || (w > p && p == l)))
 	{
 		flag->width -= l;
-		if (flag->zero)
-			print_sign(spec, flag);
 		if (!flag->minus)//wd
 			print_width(spec, flag);
-		if (!flag->zero)
-			print_sign(spec, flag);
 		ft_print_num(spec, flag->num);
 		if (flag->minus)//dw
 			print_width(spec, flag);
@@ -140,7 +99,7 @@ int wd_and_dw(t_spec *spec, t_flag *flag)//done
 	return (0);
 }
 
-int d(t_spec *spec, t_flag *flag)//done
+int ud(t_spec *spec, t_flag *flag)//done
 {
 	int p;
 	int w;
@@ -153,33 +112,28 @@ int d(t_spec *spec, t_flag *flag)//done
 	if ((l > w && w > p) || (l > p && p > w) || (w == l && l > p) || \
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
-		print_sign(spec, flag);
 		ft_print_num(spec, flag->num);
 		return (1);
 	}
 	return (0);
-} */
+}
 
 
 int			print_u(t_spec *spec, t_flag *flag)
 {
-	make_4thflag(spec, flag);
+	umake_4thflag(spec, flag);
 	if (flag->minus)
 		flag->zero = 0;
-	if (flag->sign || flag->plus || flag->space)
-		flag->width--;
 	if (flag->precision > 0)
 		flag->zero = 0;
 
-	if (pd(spec, flag))
+	if (upd(spec, flag))
 		return (1);
-	else if (d(spec, flag))
+	else if (ud(spec, flag))
 		return (1);
-	else if (wd_and_dw(spec, flag))
+	else if (uwd_and_dw(spec, flag))
 		return (1);
-	else if (wpd_and_pdw(spec, flag))
+	else if (uwpd_and_pdw(spec, flag))
 		return (1);
 	return (0);
 }
-
-//
