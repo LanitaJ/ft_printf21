@@ -31,7 +31,7 @@ void umake_4thflag(t_spec *spec, t_flag *flag)
 		flag->num = (unsigned long)num * -1;
 	else
 		flag->num = (unsigned long)num;
-	flag->len = ft_len_number(flag->num);
+	flag->len = ft_len_number(flag->num, 10);
 }
 
 int upd(t_spec *spec, t_flag *flag)//done

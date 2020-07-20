@@ -107,8 +107,8 @@ int main(void)
 	//ft_printf("%-10.*d.\n", -5, 16);
 	//ft_printf("%#.6o.\n", 16);
 	//printf("%#.6o.\n", 16);
-	printf("%#.6X.\n", 15);
-	ft_printf("%#.6X.\n", 15);
+	printf("%#x\n", 10);
+    ft_printf("%#x", 10);
 
 
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
