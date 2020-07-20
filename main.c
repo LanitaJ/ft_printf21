@@ -102,7 +102,15 @@ int main(void)
     //ft_printf("%lu\n", -42);
     //ft_printf("{%*3d}\n", 5, 0);
     //ft_printf("%o\n", -5);
-    ft_printf("%o", 41);
+ //   ft_printf("%-8.*o.", 5, 8);
+	//printf("%-10.*d.\n", -5, 16);
+	//ft_printf("%-10.*d.\n", -5, 16);
+	//ft_printf("%#.6o.\n", 16);
+	//printf("%#.6o.\n", 16);
+	printf("%#.6X.\n", 15);
+	ft_printf("%#.6X.\n", 15);
+
+
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
 	printf("pwl .%-10.15d.\n", 1234567); */
 
@@ -148,9 +156,12 @@ int main(void)
     printf("p=l w .%- 2.7d.\n", 1234567);//p=l w
     printf("p w=l .%- 7.8d.\n", 1234567);//p w=l
     printf("l w=p .%- 6.6d.\n", 1234567);//l w=p */
-    
-    
-    
+/*
+	printf("s = %*.*s.\n", 6, 3, "abcde");
+	ft_printf("s = %*.*s.\n", 6, 3, "abcde");
+	printf("char = %*%.\n", 5);
+	ft_printf("char = %*%.\n", -5);
+*/
     /* ft_printf("wpl .%10.8d.\n", 1234567);//
     printf("wpl .%10.8d.\n", 1234567);//
      */

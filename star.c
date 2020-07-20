@@ -1,10 +1,10 @@
 #include "includes/ft_printf.h"
 
 void parse_star(t_spec *spec, t_flag *flag)
-{	
+{
 	int val;
 
-	if (spec->format[spec->i] == '*' && spec->i++)
+	if (spec->format[spec->i] == '*' && spec->i + 1)
 	{
 		flag->star = 1;
 		if ((val = (int)va_arg(spec->ap, int)))
@@ -23,15 +23,17 @@ void parse_star(t_spec *spec, t_flag *flag)
 				else
 					flag->width = val;
 			}
+
 		}
 		else
 			flag->zero = 1;//у Леши
+		spec->i++;
 	}
 }
 
 void parse_number(t_spec *spec, t_flag *flag, int *res)
 {
-	if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' && 
+	if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' &&
 		(!*res || flag->star))
 	{
 		*res = 0;

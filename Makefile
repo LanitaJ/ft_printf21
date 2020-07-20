@@ -15,12 +15,11 @@ NAME = libftprintf.a
 .PHONY: all clean fclean re
 
 SRC =	ft_printf.c specificator.c flags.c\
-		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c\
+		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c spec_percent.c spec_x_X.c\
 		ft_atoi.c ft_itoa_base.c ft_putchar.c ft_strlen.c ft_strdup.c ft_putstr.c\
 		star.c
 
 OBJ = $(SRC:.c=.o)
-
 
 OPTION = -c -I includes/ft_printf.h
 FLAGS = -g -Wall -Wextra -Werror

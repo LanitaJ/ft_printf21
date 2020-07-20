@@ -29,15 +29,17 @@ static int	def_types(t_spec *spec, t_flag *flag)
 		print_u(spec, flag);
 	if (spec->format[spec->i] == 'o' || spec->format[spec->i] == 'O')
 		print_o(spec, flag);
-	/* 
-	if (spec->format[spec->i] == 'x')
-		print_x(spec); */
+
+	if (spec->format[spec->i] == 'x' ||	spec->format[spec->i] == 'X')
+		print_x(spec, flag);
 	/* if (spec->format[spec->i] == 'X')
 		print_lx(spec); */
 	/* if (spec->format[spec->i] == 'C')
 		print_lc(spec); */
 	/* if (spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
 		print_f(spec); */
+	if (spec->format[spec->i] == '%')
+		print_percent(spec, flag);
 	return (0);
 }
 
@@ -50,7 +52,8 @@ int		print_spec(t_spec *spec, t_flag *flag)
 		spec->format[spec->i] == 'x' || spec->format[spec->i] == 'X' ||
 		spec->format[spec->i] == 'c' || spec->format[spec->i] == 'C' ||
 		spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F' ||
-		spec->format[spec->i] == 'q' || spec->format[spec->i] == 'Q')
+		spec->format[spec->i] == 'q' || spec->format[spec->i] == 'Q' ||
+		spec->format[spec->i] == '%')
 	{
 		def_types(spec, flag);
 		spec->i++;

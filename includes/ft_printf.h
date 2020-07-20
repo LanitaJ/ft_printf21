@@ -66,15 +66,13 @@ int			print_q(t_spec *spec, t_flag *flag);
 int			print_d(t_spec *spec, t_flag *flag);
 int			print_u(t_spec *spec, t_flag *flag);
 int			print_o(t_spec *spec, t_flag *flag);
+int			print_percent(t_spec *spec, t_flag *flag);
 /* int			print_d(t_spec *spec);
 int			print_e(t_spec *spec);
 int			print_g(t_spec *spec);
-int			print_o(t_spec *spec);
-int			print_p(t_spec *spec);
-
-int			print_u(t_spec *spec);
-int			print_x(t_spec *spec);
-int			print_f(t_spec *spec); */
+int			print_p(t_spec *spec); */
+int			print_x(t_spec *spec, t_flag *flag);
+//int			print_f(t_spec *spec);
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *src);
 int			ft_putchar_bytes(int c, t_spec *spec);
@@ -84,13 +82,14 @@ void		ft_putstr_bytes(char const *s, t_spec *spec);
 void		parse_star(t_spec *spec, t_flag *flag);
 void		parse_number(t_spec *spec, t_flag *flag, int *res);
 /**************************/
-void make_4thflag(t_spec *spec, t_flag *flag);
-int	ft_len_number(unsigned long num);
+void 		make_4thflag(t_spec *spec, t_flag *flag);
+int			ft_len_number(unsigned long num, unsigned rang);
 void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c);
 void		print_width(t_spec *spec, t_flag *flag);
-int pd(t_spec *spec, t_flag *flag);
-int wpd(t_spec *spec, t_flag *flag);
+int 		pd(t_spec *spec, t_flag *flag);
+int 		wpd(t_spec *spec, t_flag *flag);
 
-void umake_4thflag(t_spec *spec, t_flag *flag);
-void omake_4thflag(t_spec *spec, t_flag *flag);
+void 		umake_4thflag(t_spec *spec, t_flag *flag);
+void 		omake_4thflag(t_spec *spec, t_flag *flag);
+
 #endif
