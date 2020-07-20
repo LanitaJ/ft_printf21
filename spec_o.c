@@ -73,7 +73,8 @@ int owpd_and_pdw(t_spec *spec, t_flag *flag)//done
 			ft_putchar_bytes('0', spec);
         if (flag->hash && flag->precision < 1)
             ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 8, 97);
+		if (flag->num ||  !flag->precision)
+			ft_print_num(spec, flag->num, 8, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -99,7 +100,8 @@ int owd_and_dw(t_spec *spec, t_flag *flag)//done
 			print_width(spec, flag);
         if (flag->hash)
             ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 8, 97);
+		if (flag->num ||  !flag->precision)
+			ft_print_num(spec, flag->num, 8, 97);
 		if (flag->minus)//dw
 			print_width(spec, flag);
 		return (1);
@@ -122,7 +124,8 @@ int od(t_spec *spec, t_flag *flag)//done
 	{
         if (flag->hash)
             ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 8, 97);
+		if (flag->num ||  !flag->precision)
+			ft_print_num(spec, flag->num, 8, 97);
 		return (1);
 	}
 	return (0);

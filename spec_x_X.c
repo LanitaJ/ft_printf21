@@ -32,6 +32,11 @@ void xmake_4thflag(t_spec *spec, t_flag *flag)
 	else
 		flag->num = (unsigned long)num;
 	flag->len = ft_len_number(flag->num, 16);
+	if (flag->num == 0 && flag->dot)
+	{
+		flag->precision++;
+		flag->width++;
+	}
 }
 
 int xpd(t_spec *spec, t_flag *flag) // norm
@@ -83,19 +88,17 @@ int xwpd_and_pdw(t_spec *spec, t_flag *flag) // norm
 			print_width(spec, flag);
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0x", spec);
-			while (flag->precision--)
-				ft_putchar_bytes('0', spec);
-			ft_print_num(spec, flag->num, 16, 97);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0X", spec);
-			while (flag->precision--)
-				ft_putchar_bytes('0', spec);
-			ft_print_num(spec, flag->num, 16, 65);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		if (flag->minus)
 			print_width(spec, flag);
@@ -123,15 +126,17 @@ int xwd_and_dw(t_spec *spec, t_flag *flag) // vrode norm
 			print_width(spec, flag);
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0x", spec);
-			ft_print_num(spec, flag->num, 16, 97);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0X", spec);
-			ft_print_num(spec, flag->num, 16, 65);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		if (flag->minus)//dw
 			print_width(spec, flag);
@@ -156,15 +161,17 @@ int xd(t_spec *spec, t_flag *flag)
 
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0x", spec);
-			ft_print_num(spec, flag->num, 16, 97);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash)
+			if (flag->hash && (flag->num ||  !flag->precision))
 				ft_putstr_bytes("0X", spec);
-			ft_print_num(spec, flag->num, 16, 65);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		return (1);
 	}
