@@ -88,14 +88,14 @@ int xwpd_and_pdw(t_spec *spec, t_flag *flag) // norm
 			print_width(spec, flag);
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0x", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 97);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0X", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 65);
@@ -126,14 +126,14 @@ int xwd_and_dw(t_spec *spec, t_flag *flag) // vrode norm
 			print_width(spec, flag);
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0x", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 97);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0X", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 65);
@@ -161,14 +161,14 @@ int xd(t_spec *spec, t_flag *flag)
 
 		if (spec->format[spec->i] == 'x')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0x", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 97);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
-			if (flag->hash && (flag->num ||  !flag->precision))
+			if (flag->hash && (flag->num || !flag->precision))
 				ft_putstr_bytes("0X", spec);
 			if (flag->num ||  !flag->precision)
 				ft_print_num(spec, flag->num, 16, 65);

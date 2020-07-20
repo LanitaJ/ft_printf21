@@ -33,7 +33,12 @@ void omake_4thflag(t_spec *spec, t_flag *flag)
 		flag->num = (unsigned long)num;
 	flag->len = ft_len_number(flag->num, 8);
     if (flag->hash && flag->precision < 1)
-        flag->width--; 
+        flag->width--;
+	if (flag->num == 0 && flag->dot)
+	{
+		flag->precision++;
+		flag->width++;
+	}
 }
 //
 int opd(t_spec *spec, t_flag *flag)//done
