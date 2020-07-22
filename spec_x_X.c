@@ -60,7 +60,8 @@ int xpd(t_spec *spec, t_flag *flag) // norm
 				ft_putstr_bytes("0x", spec);
 			while (flag->precision--)
 				ft_putchar_bytes('0', spec);
-			ft_print_num(spec, flag->num, 16, 97);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 97);
 		}
 		if (spec->format[spec->i] == 'X')
 		{
@@ -68,7 +69,8 @@ int xpd(t_spec *spec, t_flag *flag) // norm
 				ft_putstr_bytes("0X", spec);
 			while (flag->precision--)
 				ft_putchar_bytes('0', spec);
-			ft_print_num(spec, flag->num, 16, 65);
+			if (flag->num ||  !flag->precision)
+				ft_print_num(spec, flag->num, 16, 65);
 		}
 		return (1);
 	}

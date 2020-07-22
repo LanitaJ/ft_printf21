@@ -87,7 +87,8 @@ int pd(t_spec *spec, t_flag *flag)//done
 		print_sign(spec, flag);
 		while (p--)
 			ft_putchar_bytes('0', spec);
-		ft_print_num(spec, flag->num, 10, 97);
+		if (flag->num ||  !flag->precision)
+			ft_print_num(spec, flag->num, 10, 97);
 		return (1);
 	}
 	return (0);

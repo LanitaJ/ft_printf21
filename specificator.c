@@ -21,6 +21,8 @@ static int	def_types(t_spec *spec, t_flag *flag)
 		print_c(spec, flag);
 	if (spec->format[spec->i] == 'q')
 		print_q(spec, flag);
+	if (spec->format[spec->i] == 'b')
+		print_b(spec, flag);
 	/* if (spec->format[spec->i] == 'p')
 		print_p(spec); */
 	if (spec->format[spec->i] == 'd' ||	spec->format[spec->i] == 'i')
@@ -53,6 +55,7 @@ int		print_spec(t_spec *spec, t_flag *flag)
 		spec->format[spec->i] == 'c' || spec->format[spec->i] == 'C' ||
 		spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F' ||
 		spec->format[spec->i] == 'q' || spec->format[spec->i] == 'Q' ||
+		spec->format[spec->i] == 'b' || spec->format[spec->i] == 'B' ||
 		spec->format[spec->i] == '%')
 	{
 		def_types(spec, flag);

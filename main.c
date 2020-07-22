@@ -2,6 +2,16 @@
 #include "includes/ft_printf.h"
 int main(void)
 {
+    /****************FLOAT*******************/
+
+
+    /* printf("%#f\n", 12.345);
+    printf("%2.2f\n", 12.345);
+    printf("%2.5f\n", 12.345);
+    printf("%5.2f\n", 12.345);
+    ft_printf("%4.4f\n", 12.345); */
+    //printf("%.3b", 12);
+    ft_printf("%b", 4294967296);
 	/****************Integer****************/
 
 	/* printf("%+d.\n", 1234567);
@@ -107,8 +117,7 @@ int main(void)
 	//ft_printf("%-10.*d.\n", -5, 16);
 	//ft_printf("%#.6o.\n", 16);
 	//printf("%#.6o.\n", 16);
-	printf("%#x\n", 10);
-    ft_printf("%#x", 10);
+   
 
 
     /* ft_printf("pwl .%-10.15d.\n", 1234567);//pwl
@@ -241,7 +250,8 @@ int main(void)
 	ft_printf("%42q");
 	ft_printf("%2q", 1);
 	ft_printf("%2q", 2);
-	ft_printf("%2q", 3); */
+	ft_printf("%2q", 3);
+    */
 
 	
     return (0);
