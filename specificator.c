@@ -12,9 +12,8 @@
 
 #include "includes/ft_printf.h"
 
-static int	def_types(t_spec *spec, t_flag *flag)
+static void	def_types(t_spec *spec, t_flag *flag)
 {
-
 	if (spec->format[spec->i] == 's')
 		print_s(spec, flag);
 	if (spec->format[spec->i] == 'c')
@@ -23,8 +22,6 @@ static int	def_types(t_spec *spec, t_flag *flag)
 		print_q(spec, flag);
 	if (spec->format[spec->i] == 'b')
 		print_b(spec, flag);
-	/* if (spec->format[spec->i] == 'p')
-		print_p(spec); */
 	if (spec->format[spec->i] == 'd' ||	spec->format[spec->i] == 'i')
 		print_d(spec, flag);
 	if (spec->format[spec->i] == 'u')
@@ -34,18 +31,15 @@ static int	def_types(t_spec *spec, t_flag *flag)
 
 	if (spec->format[spec->i] == 'x' ||	spec->format[spec->i] == 'X')
 		print_x(spec, flag);
-	/* if (spec->format[spec->i] == 'X')
-		print_lx(spec); */
-	/* if (spec->format[spec->i] == 'C')
-		print_lc(spec); */
+	/* if (spec->format[spec->i] == 'p')
+		print_p(spec); */
 	/* if (spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
 		print_f(spec); */
 	if (spec->format[spec->i] == '%')
 		print_percent(spec, flag);
-	return (0);
 }
 
-int		print_spec(t_spec *spec, t_flag *flag)
+void		print_spec(t_spec *spec, t_flag *flag)
 {
 	if (spec->format[spec->i] == 's' || spec->format[spec->i] == 'S' ||
 		spec->format[spec->i] == 'p' || spec->format[spec->i] == 'd' ||
@@ -61,6 +55,5 @@ int		print_spec(t_spec *spec, t_flag *flag)
 		def_types(spec, flag);
 		spec->i++;
 	}
-	return (0);
 }
 

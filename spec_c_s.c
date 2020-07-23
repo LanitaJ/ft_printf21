@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void print_width(t_spec *spec, t_flag *flag)
+void		print_width(t_spec *spec, t_flag *flag)
 {
 	while (flag->width--)
 	{
@@ -23,7 +23,7 @@ void print_width(t_spec *spec, t_flag *flag)
 	}
 }
 
-int			print_s(t_spec *spec, t_flag *flag)
+void		print_s(t_spec *spec, t_flag *flag)
 {
 	char	*str;
 	char	*out;
@@ -40,7 +40,7 @@ int			print_s(t_spec *spec, t_flag *flag)
 		out[flag->precision] = '\0';
 	}
 	if (flag->minus)
-		write(1, out, len);
+		write(spec->fd, out, len);
 	if (flag->width > len)
 		flag->width -= len;
 	else
@@ -48,18 +48,17 @@ int			print_s(t_spec *spec, t_flag *flag)
 	spec->bytes += len;
 	print_width(spec, flag);
 	if (!flag->minus)
-		write(1, out, len);
+		write(spec->fd, out, len);
 	free(out);
-	return(0);
 }
 
-static void	print_lc(char c)
+static void	print_lc(char c, t_spec *spec)
 {
 	c = (wchar_t)c;
-	write(1, &c, 1);
+	write(spec->fd, &c, 1);
 }
 
-int		print_c(t_spec *spec, t_flag *flag)
+void		print_c(t_spec *spec, t_flag *flag)
 {
 	char	c;
 
@@ -69,12 +68,11 @@ int		print_c(t_spec *spec, t_flag *flag)
 	if (flag->minus)
 	{
 		if (flag->l)
-			print_lc(c);
+			print_lc(c, spec);
 		else
 			ft_putchar_bytes(c, spec);	
 	}
 	print_width(spec, flag);
 	if (!flag->minus)
 		ft_putchar_bytes(c, spec);
-	return (0);
 }

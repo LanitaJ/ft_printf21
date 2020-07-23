@@ -22,35 +22,36 @@
 
 typedef struct		s_flag
 {
-	int		plus;
-	int		minus;
-	int		hash;
-	int		space;
-	int		zero;
+	int					plus;
+	int					minus;
+	int					hash;
+	int					space;
+	int					zero;
 		
-	int		star;
-	int		width;
-	int		dot;
-	int		precision;
+	int					star;
+	int					width;
+	int					dot;
+	int					precision;
 	
-	int		l;
-	int		ll;
-	int		L;
-	int		h;
-	int		hh;
+	int					l;
+	int					ll;
+	int					L;
+	int					h;
+	int					hh;
 	
-	int		sign;
+	int					sign;
 	unsigned long		num;
-	int		len;
-	char	type;
+	int					len;
+	char				type;
 }					t_flag;
 
 typedef struct		s_spec
 {
-	int		i;
-	char	*format;
-	int		bytes;
-	va_list	ap;
+	int				i;
+	char			*format;
+	int				bytes;
+	unsigned int	fd;
+	va_list			ap;
 }					t_spec;
 
 int			ft_printf(const char *format, ...);
@@ -58,16 +59,16 @@ void    	first_flag(t_spec *spec, t_flag *flag);
 void    	second_flag(t_spec *spec, t_flag *flag);
 void    	third_flag(t_spec *spec, t_flag *flag);
 void    	fourth_flag(t_spec *spec, t_flag *flag);
-int			print_spec(t_spec *spec, t_flag *flag);
+void		print_spec(t_spec *spec, t_flag *flag);
 
-int			print_c(t_spec *spec, t_flag *flag);
-int			print_s(t_spec *spec, t_flag *flag);
-int			print_d(t_spec *spec, t_flag *flag);
-int			print_u(t_spec *spec, t_flag *flag);
-int			print_x(t_spec *spec, t_flag *flag);
-int			print_o(t_spec *spec, t_flag *flag);
-int			print_f(t_spec *spec, t_flag *flag);
-int			print_percent(t_spec *spec, t_flag *flag);
+void		print_c(t_spec *spec, t_flag *flag);
+void		print_s(t_spec *spec, t_flag *flag);
+void		print_d(t_spec *spec, t_flag *flag);
+void		print_u(t_spec *spec, t_flag *flag);
+void		print_x(t_spec *spec, t_flag *flag);
+void		print_o(t_spec *spec, t_flag *flag);
+void			print_f(t_spec *spec, t_flag *flag);
+void			print_percent(t_spec *spec, t_flag *flag);
 
 int			print_q(t_spec *spec, t_flag *flag);
 int			print_b(t_spec *spec, t_flag *flag);
@@ -85,11 +86,6 @@ void 		make_4thflag(t_spec *spec, t_flag *flag);
 int			ft_len_number(unsigned long num, unsigned rang);
 void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c);
 void		print_width(t_spec *spec, t_flag *flag);
-int 		pd(t_spec *spec, t_flag *flag);
-int 		wpd(t_spec *spec, t_flag *flag);
-int 		bpd(t_spec *spec, t_flag *flag);
 
-void 		umake_4thflag(t_spec *spec, t_flag *flag);
-void 		omake_4thflag(t_spec *spec, t_flag *flag);
 
 #endif

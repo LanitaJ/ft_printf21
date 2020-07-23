@@ -12,25 +12,18 @@
 
 #include "includes/ft_printf.h"
 
-void xmake_4thflag(t_spec *spec, t_flag *flag)
+static void xmake_4thflag(t_spec *spec, t_flag *flag)
 {
-	long long int num;
-
-	num = 0;
 	if (flag->hh)
-		num = (unsigned char)va_arg(spec->ap, unsigned int);
+		flag->num = (unsigned char)va_arg(spec->ap, unsigned int);
 	else if (flag->h)
-		num = (unsigned short)va_arg(spec->ap, unsigned int);
+		flag->num = (unsigned short)va_arg(spec->ap, unsigned int);
 	else if (flag->l)
-		num = (unsigned long)va_arg(spec->ap, unsigned long int);
+		flag->num = (unsigned long int)va_arg(spec->ap, unsigned long int);
 	else if (flag->ll)
-		num = (unsigned long long)va_arg(spec->ap, unsigned long long int);
+		flag->num = (unsigned long long int)va_arg(spec->ap, unsigned long long int);
 	else
-		num = (unsigned int)va_arg(spec->ap, unsigned int);
-	if (num < 0 && ++flag->sign)
-		flag->num = (unsigned long)num * -1;
-	else
-		flag->num = (unsigned long)num;
+		flag->num = (unsigned int)va_arg(spec->ap, unsigned int);
 	flag->len = ft_len_number(flag->num, 16);
 	if (flag->num == 0 && flag->dot)
 	{
@@ -39,7 +32,7 @@ void xmake_4thflag(t_spec *spec, t_flag *flag)
 	}
 }
 
-int xpd(t_spec *spec, t_flag *flag) // norm
+static int xpd(t_spec *spec, t_flag *flag)
 {
 	int p;
 	int w;
@@ -52,32 +45,21 @@ int xpd(t_spec *spec, t_flag *flag) // norm
 		|| (p > w && w == l))
 	{
 		flag->precision -= l;
-
-		if (spec->format[spec->i] == 'x')
-
+		if (flag->hash && (flag->num || !flag->precision))
 		{
-			if (flag->hash)
-				ft_putstr_bytes("0x", spec);
-			while (flag->precision--)
-				ft_putchar_bytes('0', spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 97);
+			ft_putchar_bytes('0', spec);
+			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
-		if (spec->format[spec->i] == 'X')
-		{
-			if (flag->hash)
-				ft_putstr_bytes("0X", spec);
-			while (flag->precision--)
-				ft_putchar_bytes('0', spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 65);
-		}
+		while (flag->precision--)
+			ft_putchar_bytes('0', spec);
+		if (flag->num || !flag->precision)
+			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
 		return (1);
 	}
 	return (0);
 }
 
-int xwpd_and_pdw(t_spec *spec, t_flag *flag) // norm
+static int xwpd_and_pdw(t_spec *spec, t_flag *flag)
 {
 	if (flag->width > flag->precision && flag->precision > flag->len)
 	{
@@ -88,20 +70,15 @@ int xwpd_and_pdw(t_spec *spec, t_flag *flag) // norm
 			flag->width -= 2;
 		if (!flag->minus)
 			print_width(spec, flag);
-		if (spec->format[spec->i] == 'x')
+		while (flag->precision--)
+			ft_putchar_bytes('0', spec);
+		if (flag->hash && (flag->num || !flag->precision))
 		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0x", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 97);
+			ft_putchar_bytes('0', spec);
+			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
-		if (spec->format[spec->i] == 'X')
-		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0X", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 65);
-		}
+		if (flag->num || !flag->precision)
+			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -109,45 +86,31 @@ int xwpd_and_pdw(t_spec *spec, t_flag *flag) // norm
 	return (0);
 }
 
-int xwd_and_dw(t_spec *spec, t_flag *flag) // vrode norm
+static int xwd_and_dw(t_spec *spec, t_flag *flag)
 {
-	int p;
-	int w;
-	int l;
-
-	l = flag->len;
-	p = flag->precision;
-	w = flag->width;
-
-	if (((w > l && l > p) || (w > p && p == l)))
+	if ((flag->width > flag->len && flag->len > flag->precision) ||\
+	(flag->width > flag->precision && flag->precision == flag->len))
 	{
-		flag->width -= l;
-		if (flag->hash)
-			flag->width -= 2;
-		if (!flag->minus)
+		flag->width = flag->width - flag->len - (2 * flag->hash);
+		if (!flag->minus && !flag->zero)
 			print_width(spec, flag);
-		if (spec->format[spec->i] == 'x')
+		if (flag->hash && (flag->num || !flag->precision))
 		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0x", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 97);
+			ft_putchar_bytes('0', spec);
+			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
-		if (spec->format[spec->i] == 'X')
-		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0X", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 65);
-		}
-		if (flag->minus)//dw
+		if (!flag->minus && flag->zero)
+			print_width(spec, flag);
+		if (flag->num || !flag->precision)
+			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
+		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
 	}
 	return (0);
 }
 
-int xd(t_spec *spec, t_flag *flag)
+static int xd(t_spec *spec, t_flag *flag)
 {
 	int p;
 	int w;
@@ -160,43 +123,28 @@ int xd(t_spec *spec, t_flag *flag)
 	if ((l > w && w > p) || (l > p && p > w) || (w == l && l > p) || \
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
-
-		if (spec->format[spec->i] == 'x')
+		if (flag->hash && (flag->num || !flag->precision))
 		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0x", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 97);
+			ft_putchar_bytes('0', spec);
+			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
-		if (spec->format[spec->i] == 'X')
-		{
-			if (flag->hash && (flag->num || !flag->precision))
-				ft_putstr_bytes("0X", spec);
-			if (flag->num ||  !flag->precision)
-				ft_print_num(spec, flag->num, 16, 65);
-		}
+		if (flag->num ||  !flag->precision)
+			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
 		return (1);
 	}
 	return (0);
 }
 
 
-int			print_x(t_spec *spec, t_flag *flag)
+void		print_x(t_spec *spec, t_flag *flag)
 {
 	xmake_4thflag(spec, flag);
-	if (flag->minus)
-		flag->zero = 0;
-	if (flag->precision > 0)
+	if (flag->minus || flag->precision > 0)
 		flag->zero = 0;
 	if (flag->num == 0 && !flag->dot)
 		flag->hash = 0;
-	if (xpd(spec, flag))
-		return (1);
-	else if (xd(spec, flag))
-		return (1);
-	else if (xwd_and_dw(spec, flag))
-		return (1);
-	else if (xwpd_and_pdw(spec, flag))
-		return (1);
-	return (0);
+	if ((!xpd(spec, flag)))
+		if ((!xd(spec, flag)))
+			if(!(xwd_and_dw(spec, flag)))
+				xwpd_and_pdw(spec, flag);
 }

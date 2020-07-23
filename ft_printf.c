@@ -19,25 +19,6 @@ void    flags(t_spec *spec, t_flag *flag)
     third_flag(spec, flag);
     fourth_flag(spec, flag);
 	print_spec(spec, flag);
-	/* printf("\n***************\n");
-	printf("plus  %d\n", flag->plus);
-	printf("minus %d\n", flag->minus);
-	printf("hash  %d\n", flag->hash);
-	printf("space %d\n", flag->space);
-	printf("zero  %d", flag->zero);
-	printf("\n---------------\n");
-	printf("width %d", flag->width);
-	printf("\n---------------\n");
-	printf("precision %d", flag->precision);
-	printf("\n---------------\n");
-	printf("h  %d\n", flag->h);
-	printf("hh %d\n", flag->hh);
-	printf("l  %d\n", flag->l);
-	printf("ll %d\n", flag->ll);
-	printf("L  %d\n", flag->L);
-	printf("flag NULL %d\n", flag->flag_null);
-	printf("\n***************\n"); 
-	*/
 }
 
 int		parse(t_spec *spec, t_flag *flag)
@@ -51,7 +32,13 @@ int		parse(t_spec *spec, t_flag *flag)
 			spec->i++;
 			flags(spec, flag);
 		}
-        else
+		else if (spec->format[spec->i] == '{' && spec->format[spec->i + 1] == 'f' &&\
+				spec->format[spec->i + 2] == 'd' && spec->format[spec->i + 3] == '}')
+        {
+			spec->fd = (unsigned int)va_arg(spec->ap, unsigned int);
+			spec->i += 4;
+		}
+		else
         {
             ft_putchar_bytes(spec->format[spec->i], spec);
 			spec->i++;
@@ -67,8 +54,8 @@ int		ft_printf(const char *format, ...)
 
 	va_start(spec.ap, format);
 	spec.format = ft_strdup(format);
-	if (!parse(&spec, &flag))
-		return (-1);
+	spec.fd = 1;
+	parse(&spec, &flag);
 	va_end(spec.ap);
 	free(spec.format);
 	//printf("\nbytes: %d", spec.bytes);
@@ -93,9 +80,9 @@ int		ft_printf(const char *format, ...)
 	расписать для каждого типа флаги
 	рассмотреть совместимости флагов
 	узнать про цвета
-	fd
+	
 	запись в файл
-	вывод двоичных чисел
+	
 
 	Пояснения.
 	spec -	хранит:
@@ -108,5 +95,8 @@ int		ft_printf(const char *format, ...)
 
 	bonus:
 	добавить флаг q - смайлики :), :(, xD, Dx, 
-	морзе  
+	морзе
+	вывод двоичных чисел
+	fd
+	*
 */

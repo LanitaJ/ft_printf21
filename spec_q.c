@@ -36,7 +36,7 @@ static void second_pt(t_spec *spec)
 	|||||oo__________|ooooo||||||||||||||||||||||\n\
 	|||||||ooooooooooo|||||||||||||||||||||||||||\n";
 	len = ft_strlen(troll2);
-	write(1,troll2, len);
+	write(spec->fd,troll2, len);
 	spec->bytes += len;
 }
 static void print_troll(t_spec *spec)
@@ -62,7 +62,7 @@ static void print_troll(t_spec *spec)
 	|||o_|__o____|oo______||o|_____|oo|_ooo|o__o|\n\
 	|||o|__oo___||oo____ooo_o___|ooo|___o__o___o|";
 	len = ft_strlen(troll);
-	write(1,troll, len);
+	write(spec->fd, troll, len);
 	second_pt(spec);
 	spec->bytes += len;
 }
@@ -80,7 +80,7 @@ static void print_42(t_spec *spec)
          #+#    #+#          \n\
         ###   ########\n";
 	len = ft_strlen(pr42);
-	write(1,pr42, len);
+	write(spec->fd, pr42, len);
 	spec->bytes += len;
 }
 int	 print_q(t_spec *spec, t_flag *flag)
@@ -103,7 +103,7 @@ int	 print_q(t_spec *spec, t_flag *flag)
 		if (flag->width != 42 && flag->width != 1337)
 			spec->bytes += flag->width * 3;
 		while (flag->width--)
-			write(1, face, 3);
+			write(spec->fd, face, 3);
 	}
 	return(0);
 }

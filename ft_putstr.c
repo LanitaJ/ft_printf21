@@ -18,7 +18,7 @@ void	ft_putstr_bytes(char const *s, t_spec *spec)
 		return ;
 	while (*s != '\0')
 	{
-		write(1, s, 1);
+		write(spec->fd, s, 1);
 		s++;
 		spec->bytes++;
 	}

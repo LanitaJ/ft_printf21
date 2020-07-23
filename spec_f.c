@@ -12,8 +12,21 @@
 
 #include "includes/ft_printf.h"
 
-int			print_f(t_spec *spec)
+int			print_f(t_spec *spec, t_flag *flag)
 {
+	double long bd;//before dot
+	double long ad;//after dot
+	if (flag->L)
+		bd = (double long)va_arg(spec->ap, double long);
+	else
+		bd = (double)va_arg(spec->ap, double);
+	if (!flag->precision)
+		flag->precision = 6;
+	if (bd < 0 && ++flag->sign)
+		bd *= -1;
+	
+	
+
 	
 	return (0);
 }

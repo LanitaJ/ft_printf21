@@ -1,17 +1,29 @@
 #include <stdio.h>
 #include "includes/ft_printf.h"
+
+#include <fcntl.h>
+#include <limits.h>
+
 int main(void)
 {
     /****************FLOAT*******************/
-
-
+    
     /* printf("%#f\n", 12.345);
-    printf("%2.2f\n", 12.345);
+    printf("%.25f\n", 12.34567891234567890123456 - 12);
     printf("%2.5f\n", 12.345);
-    printf("%5.2f\n", 12.345);
-    ft_printf("%4.4f\n", 12.345); */
-    //printf("%.3b", 12);
-    ft_printf("%b", 4294967296);
+    printf("%5.2f\n", 12.345); */
+    //ft_printf("%4.4f\n", 12.345);
+
+    /*******************FD******************/
+    /* unsigned int fd1;
+    unsigned int fd2;
+    fd1 = open("new1", O_RDWR);
+    fd2 = open("new2", O_RDWR);
+    printf("%d\n", fd1);
+    printf("%d\n", fd2);
+    //write(fd, "as", 2);
+    ft_printf("{fd} %s {fd} %d", fd1, "sad", fd2, 123);
+    */
 	/****************Integer****************/
 
 	/* printf("%+d.\n", 1234567);
