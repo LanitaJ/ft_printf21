@@ -91,7 +91,9 @@ static int xwd_and_dw(t_spec *spec, t_flag *flag)
 	if ((flag->width > flag->len && flag->len > flag->precision) ||\
 	(flag->width > flag->precision && flag->precision == flag->len))
 	{
-		flag->width = flag->width - flag->len - (2 * flag->hash);
+		flag->width = flag->width - flag->len;
+		if (flag->num || !flag->precision)
+		flag->width = flag->width - (2 * flag->hash);
 		if (!flag->minus && !flag->zero)
 			print_width(spec, flag);
 		if (flag->hash && (flag->num || !flag->precision))
@@ -128,7 +130,7 @@ static int xd(t_spec *spec, t_flag *flag)
 			ft_putchar_bytes('0', spec);
 			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
-		if (flag->num ||  !flag->precision)
+		if (flag->num || !flag->precision)
 			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
 		return (1);
 	}

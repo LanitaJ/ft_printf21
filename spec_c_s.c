@@ -14,7 +14,7 @@
 
 void		print_width(t_spec *spec, t_flag *flag)
 {
-	while (flag->width--)
+	while (flag->width-- > 0)
 	{
 		if (flag->zero && !flag->minus)
 			ft_putchar_bytes('0', spec);

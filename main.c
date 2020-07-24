@@ -6,6 +6,20 @@
 
 int main(void)
 {
+    int d = 20;
+
+    /*****************POINTER*************/
+    /* printf("%-25p.\n", NULL);
+    printf("%25p.\n", &d);
+    ft_printf("%-25p.\n", NULL);
+    ft_printf("%25p.\n", &d); */
+    int i;
+
+    // test->debug = 1;
+    //ft_printf("%p\n", &i);
+    printf("%#8.5x.\n", 34);
+    ft_printf("%#8.5x.\n", 34);
+
     /****************FLOAT*******************/
     
     /* printf("%#f\n", 12.345);

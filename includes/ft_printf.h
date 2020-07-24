@@ -67,8 +67,9 @@ void		print_d(t_spec *spec, t_flag *flag);
 void		print_u(t_spec *spec, t_flag *flag);
 void		print_x(t_spec *spec, t_flag *flag);
 void		print_o(t_spec *spec, t_flag *flag);
-void			print_f(t_spec *spec, t_flag *flag);
-void			print_percent(t_spec *spec, t_flag *flag);
+void		print_f(t_spec *spec, t_flag *flag);
+void		print_p(t_spec *spec, t_flag *flag);
+void		print_percent(t_spec *spec, t_flag *flag);
 
 int			print_q(t_spec *spec, t_flag *flag);
 int			print_b(t_spec *spec, t_flag *flag);

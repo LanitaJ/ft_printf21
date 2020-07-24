@@ -31,8 +31,8 @@ static void	def_types(t_spec *spec, t_flag *flag)
 
 	if (spec->format[spec->i] == 'x' ||	spec->format[spec->i] == 'X')
 		print_x(spec, flag);
-	/* if (spec->format[spec->i] == 'p')
-		print_p(spec); */
+	if (spec->format[spec->i] == 'p')
+		print_p(spec, flag);
 	/* if (spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F')
 		print_f(spec); */
 	if (spec->format[spec->i] == '%')

@@ -12,7 +12,12 @@
 
 #include "includes/ft_printf.h"
 
-int			print_f(t_spec *spec, t_flag *flag)
+static double		ft_pow(double n, int pow)
+{
+	return (pow ? n * ft_pow(n, pow - 1) : 1);
+}
+
+void				print_f(t_spec *spec, t_flag *flag)
 {
 	double long bd;//before dot
 	double long ad;//after dot
@@ -24,7 +29,8 @@ int			print_f(t_spec *spec, t_flag *flag)
 		flag->precision = 6;
 	if (bd < 0 && ++flag->sign)
 		bd *= -1;
-	
+	ad = (bd - (long)bd)*(ft_pow(10, flag->precision + 1));
+
 	
 
 	
