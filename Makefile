@@ -14,10 +14,10 @@ NAME = libftprintf.a
 
 .PHONY: all clean fclean re
 
-SRC =	ft_printf.c specificator.c flags.c\
-		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c spec_percent.c spec_x_X.c\
-		ft_putchar.c ft_strlen.c ft_strdup.c spec_b.c\
-		ft_putstr.c star.c spec_p.c\
+SRC =	ft_printf.c specificator.c flags.c fourthflags.c star.c\
+		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c spec_percent.c spec_x.c\
+		spec_b.c spec_p.c spec_f.c\
+		ft_service.c\
 		
 
 OBJ = $(SRC:.c=.o)

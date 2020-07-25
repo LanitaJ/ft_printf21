@@ -43,6 +43,8 @@ typedef struct		s_flag
 	unsigned long		num;
 	int					len;
 	char				type;
+	unsigned long		bd;
+	long				ad;
 }					t_flag;
 
 typedef struct		s_spec
@@ -71,8 +73,8 @@ void		print_f(t_spec *spec, t_flag *flag);
 void		print_p(t_spec *spec, t_flag *flag);
 void		print_percent(t_spec *spec, t_flag *flag);
 
-int			print_q(t_spec *spec, t_flag *flag);
-int			print_b(t_spec *spec, t_flag *flag);
+void		print_q(t_spec *spec, t_flag *flag);
+void		print_b(t_spec *spec, t_flag *flag);
 
 size_t		ft_strlen(const char *s);
 char		*ft_strdup(const char *src);
@@ -82,11 +84,16 @@ int			ft_atoi(const char *str);
 void		ft_putstr_bytes(char const *s, t_spec *spec);
 void		parse_star(t_spec *spec, t_flag *flag);
 void		parse_number(t_spec *spec, t_flag *flag, int *res);
-/**************************/
+
 void 		make_4thflag(t_spec *spec, t_flag *flag);
+void 		umake_4thflag(t_spec *spec, t_flag *flag);
+void 		omake_4thflag(t_spec *spec, t_flag *flag);
+void 		xmake_4thflag(t_spec *spec, t_flag *flag);
+void 		bmake_4thflag(t_spec *spec, t_flag *flag);
+
 int			ft_len_number(unsigned long num, unsigned rang);
 void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c);
+void		print_sign(t_spec *spec, t_flag *flag);
 void		print_width(t_spec *spec, t_flag *flag);
-
 
 #endif

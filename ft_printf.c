@@ -62,6 +62,24 @@ int		ft_printf(const char *format, ...)
 	return (spec.bytes);
 }
 
+void		ft_print_num(t_spec *spec, unsigned long n, unsigned rang, char c)
+{
+	if (n >= rang)
+		ft_print_num(spec, n / rang, rang, c);
+	n = n % rang;
+	n += n < 10 ? '0' : c - 10;
+	ft_putchar_bytes((char)n, spec);
+}
+
+void		print_sign(t_spec *spec, t_flag *flag)
+{
+	if (flag->plus && !flag->sign)
+		ft_putchar_bytes('+', spec );
+	if (flag->sign)
+		ft_putchar_bytes('-', spec);
+	else if (flag->space && !flag->plus)
+		ft_putchar_bytes(' ', spec);
+}
 
 
 /*

@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   star.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fford <fford@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/16 18:23:11 by fford             #+#    #+#             */
+/*   Updated: 2020/07/19 19:29:25 by fford            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "includes/ft_printf.h"
 
-void parse_star(t_spec *spec, t_flag *flag)
+void	parse_star(t_spec *spec, t_flag *flag)
 {
 	int val;
 
-	if (spec->format[spec->i] == '*' && spec->i + 1)
+	if (spec->format[spec->i] == '*' && ++spec->i)
 	{
 		flag->star = 1;
 		if ((val = (int)va_arg(spec->ap, int)))
 		{
 			if (val < 0 && flag->dot)
 				flag->dot = 0;
-			else if (val < 0 && flag->dot == 0)
+			else if (val < 0 && !flag->dot)
 			{
 				flag->minus = 1;
 				flag->width = FT_ABS(val);
@@ -23,15 +35,13 @@ void parse_star(t_spec *spec, t_flag *flag)
 				else
 					flag->width = val;
 			}
-
 		}
 		else
-			flag->zero = 1;//у Леши
-		spec->i++;
+			flag->zero = 1;
 	}
 }
 
-void parse_number(t_spec *spec, t_flag *flag, int *res)
+void	parse_number(t_spec *spec, t_flag *flag, int *res)
 {
 	if (spec->format[spec->i] <= '9' && spec->format[spec->i] >= '0' &&
 		(!*res || flag->star))

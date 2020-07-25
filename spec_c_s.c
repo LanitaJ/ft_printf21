@@ -70,7 +70,7 @@ void		print_c(t_spec *spec, t_flag *flag)
 		if (flag->l)
 			print_lc(c, spec);
 		else
-			ft_putchar_bytes(c, spec);	
+			ft_putchar_bytes(c, spec);
 	}
 	print_width(spec, flag);
 	if (!flag->minus)

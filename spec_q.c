@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   spec_q.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ljerk <ljerk@student.42.fr>                +#+  +:+       +#+        */
+/*   By: fford <fford@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/23 18:29:44 by ljerk             #+#    #+#             */
-/*   Updated: 2020/03/06 17:54:05 by ljerk            ###   ########.fr       */
+/*   Created: 2020/07/14 18:23:11 by fford             #+#    #+#             */
+/*   Updated: 2020/07/14 19:29:25 by fford            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-static void second_pt(t_spec *spec)
+static void		second_pt(t_spec *spec)
 {
-	char *troll2;
+	char	*troll2;
+	int		len;
 
-	int len;
-	troll2 = 
+	troll2 =
 	"\n	|||oo__ooo|_____oo|_____||ooo|_o__|oo_____o||\n\
 	||||o__oo|ooo|___o___|oooo|____ooooo_____oo||\n\
 	||||o__o_|__ooooooooo||__o__|ooo|_o_____oo|||\n\
@@ -36,15 +36,16 @@ static void second_pt(t_spec *spec)
 	|||||oo__________|ooooo||||||||||||||||||||||\n\
 	|||||||ooooooooooo|||||||||||||||||||||||||||\n";
 	len = ft_strlen(troll2);
-	write(spec->fd,troll2, len);
+	write(spec->fd, troll2, len);
 	spec->bytes += len;
 }
-static void print_troll(t_spec *spec)
-{
-  	char *troll;
-	int len;
 
-	troll = 
+static void		print_troll(t_spec *spec)
+{
+	char	*troll;
+	int		len;
+
+	troll =
 	"	|||||||||||||||||||||||||||||||||||||||||||||\n\
 	||||||||||||oooooooooooooooooooooo|||||||||||\n\
 	||||||||||ooooo|||_________________oo||||||||\n\
@@ -67,26 +68,28 @@ static void print_troll(t_spec *spec)
 	spec->bytes += len;
 }
 
-static void print_42(t_spec *spec)
+static void		print_42(t_spec *spec)
 {
-	char *pr42;
-	int len;
+	char	*pr42;
+	int		len;
 
-	pr42 = "           :::      ::::::::\n\
-          :+:      :+:    :+:\n\
-        +:+ +:+         +:+  \n\
-      +#+  +:+       +#+     \n\
-    +#+#+#+#+#+   +#+        \n\
-         #+#    #+#          \n\
-        ###   ########\n";
+	pr42 =
+	"______:::______::::::::__\n\
+	____:+::____:+:____:+:___\n\
+	__+:+_+:+_________+:+____\n\
+	_+#+__+:+_______+#+______\n\
+	+#+#+#+#+#+___+#+________\n\
+	___#+#____#+#____________\n\
+	__###___########________\n";
 	len = ft_strlen(pr42);
 	write(spec->fd, pr42, len);
 	spec->bytes += len;
 }
-int	 print_q(t_spec *spec, t_flag *flag)
+
+void			print_q(t_spec *spec, t_flag *flag)
 {
-	int type; 
-	char *face;
+	int		type;
+	char	*face;
 
 	if ((type = (int)va_arg(spec->ap, int)))
 	{
@@ -105,5 +108,4 @@ int	 print_q(t_spec *spec, t_flag *flag)
 		while (flag->width--)
 			write(spec->fd, face, 3);
 	}
-	return(0);
 }

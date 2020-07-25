@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "includes/ft_printf.h"
 
-#include <fcntl.h>
-#include <limits.h>
-
 int main(void)
 {
     int d = 20;
@@ -14,12 +11,16 @@ int main(void)
     ft_printf("%-25p.\n", NULL);
     ft_printf("%25p.\n", &d); */
     int i;
-
+    printf("%.4o\n", 42);
+    ft_printf("%.4o", 42);
     // test->debug = 1;
     //ft_printf("%p\n", &i);
-    printf("%#8.5x.\n", 34);
-    ft_printf("%#8.5x.\n", 34);
-
+    //printf("%-5+d\n", 42);
+    //ft_printf("%#8.5o", 0);
+    /* ft_printf("%#8.5x.\n", 0);
+    printf("%#-8.5x.\n", 0);
+    ft_printf("%#-8.5x.\n", 0);
+ */
     /****************FLOAT*******************/
     
     /* printf("%#f\n", 12.345);

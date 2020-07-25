@@ -12,18 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-
-static void p_make_4thflag(t_spec *spec, t_flag *flag)
-{
-    flag->num = (unsigned long)va_arg(spec->ap, unsigned long);
-	flag->len = ft_len_number(flag->num, 16);
-	spec->bytes += 2;
-	flag->width -= 2;
-	if (flag->num == 0 && flag->dot)
-		flag->precision++;
-}
-
-static int p_pd(t_spec *spec, t_flag *flag)
+static int		p_pd(t_spec *spec, t_flag *flag)
 {
 	int p;
 	int w;
@@ -46,13 +35,12 @@ static int p_pd(t_spec *spec, t_flag *flag)
 	return (0);
 }
 
-static int p_wpd_and_pdw(t_spec *spec, t_flag *flag)
+static int		p_wpd_and_pdw(t_spec *spec, t_flag *flag)
 {
 	if (flag->width > flag->precision && flag->precision > flag->len)
 	{
 		flag->width -= flag->precision;
 		flag->precision -= flag->len;
-
 		if (flag->hash)
 			flag->width -= 2;
 		if (!flag->minus)
@@ -69,7 +57,7 @@ static int p_wpd_and_pdw(t_spec *spec, t_flag *flag)
 	return (0);
 }
 
-static int p_wd_and_dw(t_spec *spec, t_flag *flag)
+static int		p_wd_and_dw(t_spec *spec, t_flag *flag)
 {
 	if ((flag->width > flag->len && flag->len > flag->precision) ||\
 	(flag->width > flag->precision && flag->precision == flag->len))
@@ -89,7 +77,7 @@ static int p_wd_and_dw(t_spec *spec, t_flag *flag)
 	return (0);
 }
 
-static int p_d(t_spec *spec, t_flag *flag)
+static int		p_d(t_spec *spec, t_flag *flag)
 {
 	int p;
 	int w;
@@ -98,7 +86,6 @@ static int p_d(t_spec *spec, t_flag *flag)
 	l = flag->len;
 	p = flag->precision;
 	w = flag->width;
-
 	if ((l > w && w > p) || (l > p && p > w) || (w == l && l > p) || \
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
@@ -110,56 +97,16 @@ static int p_d(t_spec *spec, t_flag *flag)
 	return (0);
 }
 
-
-void		print_p(t_spec *spec, t_flag *flag)
+void			print_p(t_spec *spec, t_flag *flag)
 {
-	p_make_4thflag(spec, flag);
-	if ((!p_pd(spec, flag)))
-		if ((!p_d(spec, flag)))
-			if(!(p_wd_and_dw(spec, flag)))
-				p_wpd_and_pdw(spec, flag);
-}
-
-/* 
-static void put_p(t_spec *spec, t_flag *flag)
-{
-    if (flag->minus)
-    {
-        write(spec->fd, "0x", 2);
-        while (flag->precision-- > 0)
-			ft_putchar_bytes('0', spec);
-        if (flag->num || !flag->precision)
-            ft_print_num(spec, flag->num, 16, 97);
-    }
-    print_width(spec, flag);
-    if (!flag->minus)
-    {
-        write(spec->fd, "0x", 2);
-        while (flag->precision-- > 0)
-			ft_putchar_bytes('0', spec);
-        if (flag->num || !flag->precision)
-            ft_print_num(spec, flag->num, 16, 97);
-    }
-}
-
-
-void print_p(t_spec *spec, t_flag *flag)
-{
-    flag->num = (unsigned long)va_arg(spec->ap, unsigned long);
+	flag->num = (unsigned long)va_arg(spec->ap, unsigned long);
 	flag->len = ft_len_number(flag->num, 16);
-    if (flag->num == 0 && flag->dot)
-		flag->precision++;
 	spec->bytes += 2;
 	flag->width -= 2;
-    if (flag->precision > flag->len)
-    {
-        flag->precision -= flag->len;
-        flag->width -= flag->precision;
-    }
-    else
-    {
-        flag->precision -= flag->len;
-        flag->width -= flag->len;
-    } 
-    put_p(spec, flag);
-} */
+	if (flag->num == 0 && flag->dot)
+		flag->precision++;
+	if ((!p_pd(spec, flag)))
+		if ((!p_d(spec, flag)))
+			if (!(p_wd_and_dw(spec, flag)))
+				p_wpd_and_pdw(spec, flag);
+}

@@ -14,6 +14,7 @@
 
 void		print_percent(t_spec *spec, t_flag *flag)
 {
+	flag->len = 1;
 	if (flag->width)
 		flag->width--;
 	if (flag->minus)
