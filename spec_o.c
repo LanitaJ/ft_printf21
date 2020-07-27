@@ -49,7 +49,7 @@ static int		owpd_and_pdw(t_spec *spec, t_flag *flag)
 		if (flag->hash && flag->precision < 1)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 8, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -68,7 +68,7 @@ static int		owd_and_dw(t_spec *spec, t_flag *flag)
 		if (flag->hash)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 8, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -91,7 +91,7 @@ static int		od(t_spec *spec, t_flag *flag)
 		if (flag->hash)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 8, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		return (1);
 	}
 	return (0);
@@ -99,7 +99,8 @@ static int		od(t_spec *spec, t_flag *flag)
 
 void			print_o(t_spec *spec, t_flag *flag)
 {
-	omake_4thflag(spec, flag);
+	flag->base = 8;
+	base_make_4thflag(spec, flag, flag->base);
 	if (flag->minus)
 		flag->zero = 0;
 	if (flag->precision > 0)

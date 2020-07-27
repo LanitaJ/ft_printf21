@@ -33,7 +33,8 @@ static int			xpd(t_spec *spec, t_flag *flag)
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
+			ft_print_num(spec, flag->num, flag->base,\
+							(int)spec->format[spec->i] - 23);
 		return (1);
 	}
 	return (0);
@@ -57,7 +58,8 @@ static int			xwpd_and_pdw(t_spec *spec, t_flag *flag)
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
+			ft_print_num(spec, flag->num, flag->base,\
+						(int)spec->format[spec->i] - 23);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -83,7 +85,8 @@ static int			xwd_and_dw(t_spec *spec, t_flag *flag)
 		if (!flag->minus && flag->zero)
 			print_width(spec, flag);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
+			ft_print_num(spec, flag->num, flag->base,\
+						(int)spec->format[spec->i] - 23);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -109,7 +112,8 @@ static int			xd(t_spec *spec, t_flag *flag)
 			ft_putchar_bytes(spec->format[spec->i], spec);
 		}
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 16, (int)spec->format[spec->i] - 23);
+			ft_print_num(spec, flag->num, flag->base,
+						(int)spec->format[spec->i] - 23);
 		return (1);
 	}
 	return (0);
@@ -117,7 +121,8 @@ static int			xd(t_spec *spec, t_flag *flag)
 
 void				print_x(t_spec *spec, t_flag *flag)
 {
-	xmake_4thflag(spec, flag);
+	flag->base = 16;
+	base_make_4thflag(spec, flag, flag->base);
 	if (flag->minus || flag->precision > 0)
 		flag->zero = 0;
 	if (flag->num == 0 && !flag->dot)

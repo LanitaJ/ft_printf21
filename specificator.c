@@ -21,7 +21,7 @@ static void	def_types(t_spec *spec, t_flag *flag)
 	if (spec->format[spec->i] == 'q')
 		print_q(spec, flag);
 	if (spec->format[spec->i] == 'b')
-		print_b(spec, flag);
+		print_base(spec, flag);
 	if (spec->format[spec->i] == 'd' || spec->format[spec->i] == 'i')
 		print_d(spec, flag);
 	if (spec->format[spec->i] == 'u' || spec->format[spec->i] == 'U')
@@ -36,6 +36,8 @@ static void	def_types(t_spec *spec, t_flag *flag)
 		print_f(spec, flag);
 	if (spec->format[spec->i] == '%')
 		print_percent(spec, flag);
+	if (spec->format[spec->i] == 'm')
+		print_morze(spec);
 }
 
 void		print_spec(t_spec *spec, t_flag *flag)
@@ -50,6 +52,7 @@ void		print_spec(t_spec *spec, t_flag *flag)
 		spec->format[spec->i] == 'f' || spec->format[spec->i] == 'F' ||
 		spec->format[spec->i] == 'q' || spec->format[spec->i] == 'Q' ||
 		spec->format[spec->i] == 'b' || spec->format[spec->i] == 'B' ||
+		spec->format[spec->i] == 'm' || spec->format[spec->i] == 'M' ||
 		spec->format[spec->i] == '%')
 	{
 		def_types(spec, flag);

@@ -12,7 +12,7 @@
 
 #include "includes/ft_printf.h"
 
-void			xmake_4thflag(t_spec *spec, t_flag *flag)
+void			base_make_4thflag(t_spec *spec, t_flag *flag, int base)
 {
 	unsigned long	num;
 
@@ -27,80 +27,7 @@ void			xmake_4thflag(t_spec *spec, t_flag *flag)
 	else
 		num = (unsigned int)va_arg(spec->ap, unsigned int);
 	flag->num = (unsigned long)num;
-	flag->len = ft_len_number(flag->num, 16);
-	if (flag->num == 0 && flag->dot)
-	{
-		flag->precision++;
-		flag->width++;
-	}
-}
-
-void			omake_4thflag(t_spec *spec, t_flag *flag)
-{
-	unsigned long	num;
-
-	if (flag->hh)
-		num = (unsigned char)va_arg(spec->ap, unsigned int);
-	else if (flag->h)
-		num = (unsigned short)va_arg(spec->ap, unsigned int);
-	else if (flag->l)
-		num = (unsigned long int)va_arg(spec->ap, unsigned long int);
-	else if (flag->ll)
-		num = (unsigned long long)va_arg(spec->ap, unsigned long long int);
-	else
-		num = (unsigned int)va_arg(spec->ap, unsigned int);
-	flag->num = (unsigned long)num;
-	flag->len = ft_len_number(flag->num, 8);
-	if (flag->num == 0 && flag->dot)
-	{
-		flag->precision++;
-		flag->width++;
-	}
-}
-
-void			bmake_4thflag(t_spec *spec, t_flag *flag)
-{
-	long long int num;
-
-	num = 0;
-	if (flag->hh)
-		num = (unsigned char)va_arg(spec->ap, unsigned int);
-	else if (flag->h)
-		num = (unsigned short)va_arg(spec->ap, unsigned int);
-	else if (flag->l)
-		num = (unsigned long)va_arg(spec->ap, unsigned long int);
-	else if (flag->ll)
-		num = (unsigned long long)va_arg(spec->ap, unsigned long long int);
-	else
-		num = (unsigned int)va_arg(spec->ap, unsigned int);
-	num = (num < 0 && ++flag->sign ? (unsigned long)num * -1 :\
-		(unsigned long)num);
-	flag->len = ft_len_number(flag->num, 2);
-	if (flag->hash && flag->precision < 1)
-		flag->width--;
-	if (flag->num == 0 && flag->dot)
-	{
-		flag->precision++;
-		flag->width++;
-	}
-}
-
-void			umake_4thflag(t_spec *spec, t_flag *flag)
-{
-	unsigned long num;
-
-	if (flag->hh)
-		num = (unsigned char)va_arg(spec->ap, unsigned int);
-	else if (flag->h)
-		num = (unsigned short)va_arg(spec->ap, unsigned int);
-	else if (flag->l)
-		num = (unsigned long int)va_arg(spec->ap, unsigned long int);
-	else if (flag->ll)
-		num = (unsigned long long)va_arg(spec->ap, unsigned long long int);
-	else
-		num = (unsigned int)va_arg(spec->ap, unsigned int);
-	flag->num = (unsigned long)num;
-	flag->len = ft_len_number(flag->num, 10);
+	flag->len = ft_len_number(flag->num, base);
 	if (flag->num == 0 && flag->dot)
 	{
 		flag->precision++;

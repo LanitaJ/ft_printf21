@@ -28,7 +28,7 @@ static int		upd(t_spec *spec, t_flag *flag)
 		while (p--)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 10, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		return (1);
 	}
 	return (0);
@@ -45,7 +45,7 @@ static int		uwpd_and_pdw(t_spec *spec, t_flag *flag)
 		while (flag->precision--)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 10, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -62,7 +62,7 @@ static int		uwd_and_dw(t_spec *spec, t_flag *flag)
 		if (!flag->minus)
 			print_width(spec, flag);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 10, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -83,7 +83,7 @@ static int		ud(t_spec *spec, t_flag *flag)
 		(w == l && l == p) || (p == l && l > w) || (l > w && w == p))
 	{
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 10, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		return (1);
 	}
 	return (0);
@@ -91,7 +91,8 @@ static int		ud(t_spec *spec, t_flag *flag)
 
 void			print_u(t_spec *spec, t_flag *flag)
 {
-	umake_4thflag(spec, flag);
+	flag->base = 10;
+	base_make_4thflag(spec, flag, flag->base);
 	if (flag->minus)
 		flag->zero = 0;
 	if (flag->precision > 0)

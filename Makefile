@@ -17,7 +17,7 @@ NAME = libftprintf.a
 SRC =	ft_printf.c specificator.c flags.c fourthflags.c star.c\
 		spec_c_s.c spec_q.c spec_d.c spec_u.c spec_o.c spec_percent.c spec_x.c\
 		spec_b.c spec_p.c spec_f.c\
-		ft_service.c\
+		ft_service.c spec_morze.c\
 		
 
 OBJ = $(SRC:.c=.o)

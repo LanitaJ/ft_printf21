@@ -63,7 +63,7 @@ void				print_f(t_spec *spec, t_flag *flag)
 	double long bd;
 	double long ad;
 
-	if (flag->L)
+	if (flag->bigl)
 		bd = (double long)va_arg(spec->ap, double long);
 	else
 		bd = (double)va_arg(spec->ap, double);

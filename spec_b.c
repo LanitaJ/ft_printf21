@@ -30,7 +30,7 @@ int		bpd(t_spec *spec, t_flag *flag)
 		if (flag->hash && flag->precision < 1)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 2, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		return (1);
 	}
 	return (0);
@@ -49,7 +49,7 @@ int		bwpd_and_pdw(t_spec *spec, t_flag *flag)
 		if (flag->hash && flag->precision < 1)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 2, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -74,7 +74,7 @@ int		bwd_and_dw(t_spec *spec, t_flag *flag)
 		if (flag->hash)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 2, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		if (flag->minus)
 			print_width(spec, flag);
 		return (1);
@@ -97,23 +97,26 @@ int		bd(t_spec *spec, t_flag *flag)
 		if (flag->hash)
 			ft_putchar_bytes('0', spec);
 		if (flag->num || !flag->precision)
-			ft_print_num(spec, flag->num, 2, 97);
+			ft_print_num(spec, flag->num, flag->base, 97);
 		return (1);
 	}
 	return (0);
 }
 
-void	print_b(t_spec *spec, t_flag *flag)
+void	print_base(t_spec *spec, t_flag *flag)
 {
-	bmake_4thflag(spec, flag);
-	if (flag->minus)
-		flag->zero = 0;
-	if (flag->precision > 0)
-		flag->zero = 0;
-	if (flag->num == 0 && !flag->dot)
-		flag->hash = 0;
-	if ((!bpd(spec, flag)))
-		if ((!bd(spec, flag)))
-			if (!(bwd_and_dw(spec, flag)))
-				bwpd_and_pdw(spec, flag);
+	if ((flag->base = (unsigned int)va_arg(spec->ap, unsigned int)))
+	{
+		base_make_4thflag(spec, flag, flag->base);
+		if (flag->minus)
+			flag->zero = 0;
+		if (flag->precision > 0)
+			flag->zero = 0;
+		if (flag->num == 0 && !flag->dot)
+			flag->hash = 0;
+		if ((!bpd(spec, flag)))
+			if ((!bd(spec, flag)))
+				if (!(bwd_and_dw(spec, flag)))
+					bwpd_and_pdw(spec, flag);
+	}
 }
